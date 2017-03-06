@@ -6,6 +6,11 @@
 <struts>
     <constant name="struts.devMode" value="false" />
 	<package name="shop" extends="struts-default" namespace="/">
+		<!-- 设置全局的页面 -->
+		<global-results>
+			<result name="msg">/WEB-INF/jsp/msg.jsp</result>
+		</global-results>
+		
 		<!-- 配置首页访问的action -->
 		<action name="index" class="indexAction">
 			<result name="index">/WEB-INF/jsp/index.jsp</result>

@@ -63,6 +63,21 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	 */
 	public String regist() {
 		userService.save(user);
-		return NONE;
+		this.addActionMessage("请前往邮箱激活...");
+		return "msg";
+	}
+	/**
+	 * 激活用户
+	 */
+	public String active(){
+		boolean flag = userService.findByCode(user.getCode());
+		if(flag == true){
+			//用户存在
+			this.addActionMessage("激活成功");
+		}else{
+			//用户不存在，激活码失效
+			this.addActionError("激活失败");
+		}
+		return "msg";
 	}
 }
