@@ -1,5 +1,6 @@
 package com.hungteshun.shop.user.service;
 
+import org.apache.struts2.ServletActionContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hungteshun.shop.user.dao.UserDao;
@@ -57,6 +58,14 @@ public class UserService {
 			flag = false;
 		}
 		return flag;
+	}
+
+	/**
+	 * 用户登录
+	 * @param user
+	 */
+	public User login(User user) {
+		return userDao.login(user);
 	}
 	
 }

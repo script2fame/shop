@@ -71,4 +71,7 @@
 	<bean id="userDao" class="com.hungteshun.shop.user.dao.UserDao">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
+	<!--验证码  -->
+	<bean id="securityCode" class="com.hungteshun.shop.security.action.SecurityCode" scope="prototype">
+	</bean>
 </beans>

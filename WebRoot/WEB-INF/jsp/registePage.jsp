@@ -34,7 +34,7 @@
 			<div class="wrap">
 				<div class="main clearfix">
 					<div class="title">
-						<strong>会员注册</strong>USER REGISTER
+						<strong>会员注册<span style="color:red"><s:actionerror /></span></strong>
 					</div>
 					<form id="registerForm" action="${pageContext.request.contextPath}/user_regist.action"  method="post" novalidate="novalidate" onsubmit="return checkForm();">
 						<table>
@@ -86,12 +86,7 @@
 								</tr>
 								<tr>
 									<th><span class="requiredField">*</span>验证码:</th>
-									<td><span class="fieldSet"> <input type="text"
-											id="captcha" name="captcha" class="text captcha"
-											maxlength="4" autocomplete="off"><img
-												id="captchaImage" class="captchaImage"
-												src="${pageContext.request.contextPath}/image/captcha.jhtml"
-												title="点击更换验证码"></span></td>
+									<td><span class="fieldSet"><input type="text" id="securitycode" name="securitycode" class="text captcha" maxlength="4" autocomplete="off" ><img id="securitycodeimg" src="${pageContext.request.contextPath}/securitycode_generate.action" onclick="changeSecurityCode()" title="点击更换验证码"></span id="codemsg"><span></span></td>
 								</tr>
 								<tr>
 									<th>&nbsp;</th>
@@ -228,6 +223,7 @@
 		var email = $("#email").val();
 		var phone = $("#phone").val();
 		var addr = $("#addr").val();
+		var securitycode = $("#securitycode").val();
 		if(username == ""||username == null){
 			alert("用户名不能为空!");
 			return false;
@@ -262,6 +258,10 @@
 		}
 		if(addr == ""||addr == null){
 			alert("地址不能为空!");
+			return false;
+		}
+		if(securitycode == ""||securitycode == null){
+			alert("请输入验证码!");
 			return false;
 		}
 	}
@@ -302,5 +302,9 @@
 		    }
 			return xmlHttp;
 		 }
+	function changeSecurityCode(){
+		var old_securitycode = document.getElementById("securitycodeimg");
+		old_securitycode.src="${pageContext.request.contextPath}/securitycode_generate.action?time="+new Date().getTime();
+	}	
 </script>
 </html>
