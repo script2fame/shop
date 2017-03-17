@@ -214,7 +214,7 @@
 			frameborder="0" border="0" scrolling="no"></iframe>
 	</div>
 </body>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"/>
 <script>
 	function checkForm(){
 		var username = $("#username").val();

@@ -36,7 +36,7 @@
 							</dt>
 								<s:iterator var="categorysecond" value="#category.categoryseconds">
 									<dd>
-										<a href="${pageContext.request.contextPath}/product_findByCsid?csid=<s:property value='#categorysecond.csid'/>&currentPage=1"><s:property value="#categorysecond.csname"/></a>
+										<a href="${pageContext.request.contextPath}/product_findByCsid.action?csid=<s:property value='#categorysecond.csid'/>&currentPage=1"><s:property value="#categorysecond.csname"/></a>
 									</dd>
 								</s:iterator>
 						</dl>

@@ -20,7 +20,7 @@
 		</ul>
 	</div>
 	<div class="cart">
-		<a href="./购物车.htm">购物车</a>
+		<a href="${pageContext.request.contextPath}/cart_toMyCart.action">我的购物车</a>
 	</div>
 	<div class="phone">
 		客服热线: <strong>18379170048</strong>

@@ -1,5 +1,6 @@
 package com.hungteshun.shop.category.vo;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,7 +11,7 @@ import com.hungteshun.shop.categorysecond.vo.CategorySecond;
  * @author hungteshun黄调聪
  *
  */
-public class Category {
+public class Category implements Serializable{
 
 	private Integer cid;
 	private String cname;

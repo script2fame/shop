@@ -19,6 +19,8 @@
   <filter-mapping>
   	<filter-name>structs2</filter-name>
   	<url-pattern>/*</url-pattern>
+  	<dispatcher>REQUEST</dispatcher>
+  	<dispatcher>FORWARD</dispatcher>
   </filter-mapping>
   
   <display-name>shop</display-name>

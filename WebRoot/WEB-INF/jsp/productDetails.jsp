@@ -89,11 +89,12 @@
 					</dl>
 			</div>
 				<div class="action">
-					
+					<form id="addToCartForm" method="post" action="${pageContext.request.contextPath}/cart_addToCart.action">
+						<input type="hidden" name="pid" value="<s:property value='model.pid'/>">
 						<dl class="quantity">
 							<dt>购买数量:</dt>
 							<dd>
-								<input id="quantity" name="quantity" value="1" maxlength="4" onpaste="return false;" type="text">
+								<input id="count" name="count" value="1" maxlength="4" onpaste="return false;" type="text">
 								<div>
 									<span id="increase" class="increase">&nbsp;</span>
 									<span id="decrease" class="decrease">&nbsp;</span>
@@ -104,9 +105,9 @@
 							</dd>
 						</dl>
 					<div class="buy">
-							<input id="addCart" class="addCart" value="加入购物车" type="button">
-				
+							<input id="addCart" class="addCart" value="加入购物车" type="button" onclick="addToCart()">
 					</div>
+					</form>
 				</div>
 			<div id="bar" class="bar">
 				<ul>
@@ -181,4 +182,10 @@
 	</div>
 </div>
 </body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+	function addToCart(){
+		$("#addToCartForm").submit();
+	}
+</script>
 </html>

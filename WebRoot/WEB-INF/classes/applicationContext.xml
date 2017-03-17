@@ -67,7 +67,7 @@
 			<!-- 注入UserService -->
 			<property name="userService" ref="userService"/>
 		</bean>
-		<!--验证码  -->
+		<!-- 配置验证码的action-->
 		<bean id="securityCode" class="com.hungteshun.shop.security.action.SecurityCode" scope="prototype">
 		</bean>
 		<!-- 配置一级分类的action -->
@@ -78,6 +78,10 @@
 		<bean id="productAction" class="com.hungteshun.shop.product.action.ProductAction" scope="prototype">
 			<property name="productService" ref="productService"/>
 			<property name="categoryService" ref="categoryService"/>
+		</bean>
+		<!-- 配置购物车模块的action -->
+		<bean id="cartAction" class="com.hungteshun.shop.cart.action.CartAction" scope="prototype">
+			<property name="productService" ref="productService"/>
 		</bean>
 	<!-- Service的配置 =========================== -->
 		<bean id="userService" class="com.hungteshun.shop.user.service.UserService">

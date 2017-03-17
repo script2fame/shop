@@ -35,5 +35,12 @@
 			<result name="findCategoryByCid">/WEB-INF/jsp/Allproducts.jsp</result>
 			<result name="findCategoryByCsid">/WEB-INF/jsp/Allproducts.jsp</result>
 		</action>
+		<!-- 购物车模块的action -->
+		<action name="cart_*" class="cartAction" method="{1}">
+			<result name="addToCart">/WEB-INF/jsp/myCart.jsp</result>
+			<result name="removeFromCart">/WEB-INF/jsp/myCart.jsp</result>
+			<result name="clearCart">/WEB-INF/jsp/myCart.jsp</result>
+			<result name="toMyCart">/WEB-INF/jsp/myCart.jsp</result>
+		</action>
 	</package>
 </struts>

@@ -11,7 +11,7 @@ import com.hungteshun.shop.product.vo.Product;
  * @author hungteshun黄调聪
  *
  */
-public class CategorySecond {
+public class CategorySecond{
 
 	private Integer csid;
 	private String csname;
