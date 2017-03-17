@@ -29,5 +29,11 @@
 		<!-- 验证码访问的action -->
 		<action name="securitycode_*" class="securityCode" method="{1}">
 		</action>
+		<!-- 商品模块的action -->
+		<action name="product_*" class="productAction" method="{1}">
+			<result name="productDetails">/WEB-INF/jsp/productDetails.jsp</result>
+			<result name="findCategoryByCid">/WEB-INF/jsp/Allproducts.jsp</result>
+			<result name="findCategoryByCsid">/WEB-INF/jsp/Allproducts.jsp</result>
+		</action>
 	</package>
 </struts>

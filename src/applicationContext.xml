@@ -40,6 +40,9 @@
 		<property name="mappingResources">
 			<list>
 				<value>com/hungteshun/shop/user/vo/user.hbm.xml</value>
+				<value>com/hungteshun/shop/category/vo/category.hbm.xml</value>
+				<value>com/hungteshun/shop/categorysecond/vo/categorysecond.hbm.xml</value>
+				<value>com/hungteshun/shop/product/vo/product.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -54,24 +57,47 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<!-- Action的配置 =========================== -->
-	<!-- 配置首页访问的action -->
-	<bean id="indexAction" class="com.hungteshun.shop.index.action.IndexAction" scope="prototype">
-	</bean>
-	<!-- 配置用户模块的action -->
-	<bean id="userAction" class="com.hungteshun.shop.user.action.UserAction" scope="prototype">
-		<!-- 注入UserService -->
-		<property name="userService" ref="userService"/>
-	</bean>
+		<!-- 配置首页访问的action -->
+		<bean id="indexAction" class="com.hungteshun.shop.index.action.IndexAction" scope="prototype">
+			<property name="categoryService" ref="categoryService"/>
+			<property name="productService" ref="productService"/>
+		</bean>
+		<!-- 配置用户模块的action -->
+		<bean id="userAction" class="com.hungteshun.shop.user.action.UserAction" scope="prototype">
+			<!-- 注入UserService -->
+			<property name="userService" ref="userService"/>
+		</bean>
+		<!--验证码  -->
+		<bean id="securityCode" class="com.hungteshun.shop.security.action.SecurityCode" scope="prototype">
+		</bean>
+		<!-- 配置一级分类的action -->
+		<bean id="categoryAction" class="com.hungteshun.shop.category.action.CategoryAction" scope="prototype">
+			<property name="categoryService" ref="categoryService"/>
+		</bean>
+		<!-- 配置商品模块的action -->
+		<bean id="productAction" class="com.hungteshun.shop.product.action.ProductAction" scope="prototype">
+			<property name="productService" ref="productService"/>
+			<property name="categoryService" ref="categoryService"/>
+		</bean>
 	<!-- Service的配置 =========================== -->
-	<bean id="userService" class="com.hungteshun.shop.user.service.UserService">
-		<!-- 注入UserDao -->
-		<property name="userdao" ref="userDao"/>
-	</bean>
+		<bean id="userService" class="com.hungteshun.shop.user.service.UserService">
+			<!-- 注入UserDao -->
+			<property name="userdao" ref="userDao"/>
+		</bean>
+		<bean id="categoryService" class="com.hungteshun.shop.category.service.CategoryService">
+			<property name="categoryDao" ref="categoryDao"/>
+		</bean>
+		<bean id="productService" class="com.hungteshun.shop.product.service.ProductService">
+			<property name="productDao" ref="productDao"/>
+		</bean>
 	<!-- Dao的配置 =========================== -->
-	<bean id="userDao" class="com.hungteshun.shop.user.dao.UserDao">
-		<property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
-	<!--验证码  -->
-	<bean id="securityCode" class="com.hungteshun.shop.security.action.SecurityCode" scope="prototype">
-	</bean>
+		<bean id="userDao" class="com.hungteshun.shop.user.dao.UserDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>
+		<bean id="categoryDao" class="com.hungteshun.shop.category.dao.CategoryDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>
+		<bean id="productDao" class="com.hungteshun.shop.product.dao.ProductDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>
 </beans>

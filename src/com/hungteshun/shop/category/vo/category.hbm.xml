@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.hungteshun.shop.category.vo.Category" table="category">
+		<id name="cid">
+			<generator class="native"></generator>
+		</id>
+		<property name="cname"/>
+	<set order-by="csid" name="categoryseconds" lazy="false">
+		<key column="cid"/>
+		<one-to-many class="com.hungteshun.shop.categorysecond.vo.CategorySecond"/>
+	</set>
+	</class>
+</hibernate-mapping>
