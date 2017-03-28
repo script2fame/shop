@@ -43,6 +43,8 @@
 				<value>com/hungteshun/shop/category/vo/category.hbm.xml</value>
 				<value>com/hungteshun/shop/categorysecond/vo/categorysecond.hbm.xml</value>
 				<value>com/hungteshun/shop/product/vo/product.hbm.xml</value>
+				<value>com/hungteshun/shop/orders/vo/orderitem.hbm.xml</value>
+				<value>com/hungteshun/shop/orders/vo/orders.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -83,6 +85,9 @@
 		<bean id="cartAction" class="com.hungteshun.shop.cart.action.CartAction" scope="prototype">
 			<property name="productService" ref="productService"/>
 		</bean>
+		<bean id="orderAction" class="com.hungteshun.shop.orders.action.OrderAction" scope="prototype">
+			<property name="orderService" ref="orderService"/>
+		</bean>
 	<!-- Service的配置 =========================== -->
 		<bean id="userService" class="com.hungteshun.shop.user.service.UserService">
 			<!-- 注入UserDao -->
@@ -94,6 +99,9 @@
 		<bean id="productService" class="com.hungteshun.shop.product.service.ProductService">
 			<property name="productDao" ref="productDao"/>
 		</bean>
+		<bean id="orderService" class="com.hungteshun.shop.orders.service.OrderService">
+			<property name="orderDao" ref="orderDao"/>
+		</bean>
 	<!-- Dao的配置 =========================== -->
 		<bean id="userDao" class="com.hungteshun.shop.user.dao.UserDao">
 			<property name="sessionFactory" ref="sessionFactory"/>
@@ -102,6 +110,9 @@
 			<property name="sessionFactory" ref="sessionFactory"/>
 		</bean>
 		<bean id="productDao" class="com.hungteshun.shop.product.dao.ProductDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>
+		<bean id="orderDao" class="com.hungteshun.shop.orders.dao.OrderDao">
 			<property name="sessionFactory" ref="sessionFactory"/>
 		</bean>
 </beans>

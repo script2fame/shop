@@ -15,7 +15,7 @@ public class Cart implements Serializable{
 	private Map<Integer, CartItem> cartItemMap = new LinkedHashMap<Integer, CartItem>();
 	private double totalMoney;
 	//原始做法遍历value------在首页遍历entry.然后entry.CartItem.product.pname
-	//现在的做法：将map中的value值转成一个单列的集合，即CartItem转成一个集合，遍历方便，且说明该类中有一个属性cartItem
+	//现在的做法：将map中的value值转成一个单列的集合，即CartItem转成一个集合，遍历方便，且说明该类中有一个属性cartItems
 	public Collection<CartItem> getCartItems(){
 		return cartItemMap.values();
 	}

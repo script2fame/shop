@@ -61,7 +61,7 @@
 				</div>
 	<div class="pagination">
 	<!-- 判断是否是根据一级分类查询到的商品 -->
-	<s:if test="csid != null">
+	<s:if test="cid != null">
 			<span>第<s:property value="pageBeanProduct.currentPage"/>/<s:property value="pageBeanProduct.totalPage"/>页</span>
 			<s:if test="pageBeanProduct.currentPage!=1">
 			<a href="${pageContext.request.contextPath}/product_findCategoryByCid.action?cid=<s:property value="cid"/>&currentPage=1" class="firstPage">&nbsp;</a>
@@ -85,12 +85,12 @@
 		<s:else>
 			<span>第<s:property value="pageBeanProduct.currentPage"/>/<s:property value="pageBeanProduct.totalPage"/>页</span>
 			<s:if test="pageBeanProduct.currentPage!=1">
-			<a href="${pageContext.request.contextPath}/product_findCategoryByCsid.action?csid=<s:property value="csid"/>&currentPage=1" class="firstPage">&nbsp;</a>
-			<a href="${pageContext.request.contextPath}/product_findCategoryByCsid.action?csid=<s:property value="csid"/>&currentPage=<s:property value='pageBeanProduct.currentPage-1'/>" class="previousPage">&nbsp;</a>
+			<a href="${pageContext.request.contextPath}/product_findByCsid.action?csid=<s:property value="csid"/>&currentPage=1" class="firstPage">&nbsp;</a>
+			<a href="${pageContext.request.contextPath}/product_findByCsid.action?csid=<s:property value="csid"/>&currentPage=<s:property value='pageBeanProduct.currentPage-1'/>" class="previousPage">&nbsp;</a>
 			</s:if>
 			<s:iterator var="i" begin="1" end="pageBeanProduct.totalPage">
 				<s:if test="pageBeanProduct.currentPage!=#i">
-					<a href="${pageContext.request.contextPath}/product_findCategoryByCsid.action?csid=<s:property value="csid"/>&currentPage=<s:property value='#i'/>"><s:property value='#i'/></a>
+					<a href="${pageContext.request.contextPath}/product_findByCsid.action?csid=<s:property value="csid"/>&currentPage=<s:property value='#i'/>"><s:property value='#i'/></a>
 				</s:if>
 				<s:else>
 					<span class="currentPage"><s:property value='#i'/></span>
@@ -98,8 +98,8 @@
 			</s:iterator>
 				
 			<s:if test="pageBeanProduct.currentPage!=pageBeanProduct.totalPage">
-			<a class="nextPage" href="${pageContext.request.contextPath}/product_findCategoryByCsid.action?csid=<s:property value="csid"/>&currentPage=<s:property value='pageBeanProduct.currentPage+1'/>">&nbsp;</a>
-			<a class="lastPage" href="${pageContext.request.contextPath}/product_findCategoryByCsid.action?csid=<s:property value="csid"/>&currentPage=<s:property value='pageBeanProduct.totalPage'/>">&nbsp;</a>
+			<a class="nextPage" href="${pageContext.request.contextPath}/product_findByCsid.action?csid=<s:property value="csid"/>&currentPage=<s:property value='pageBeanProduct.currentPage+1'/>">&nbsp;</a>
+			<a class="lastPage" href="${pageContext.request.contextPath}/product_findByCsid.action?csid=<s:property value="csid"/>&currentPage=<s:property value='pageBeanProduct.totalPage'/>">&nbsp;</a>
 			</s:if>
 		</s:else>
 	</div>

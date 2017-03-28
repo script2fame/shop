@@ -11,7 +11,7 @@
 		<!-- 二级分类与一级分类的关联 -->
 		<many-to-one name="category" lazy="false" class="com.hungteshun.shop.category.vo.Category" column="cid"/>		
 		<!-- 二级分类与商品的关联 -->
-		<set name="products">
+		<set name="products" lazy="false">
 			<key column="csid"/>
 			<one-to-many class="com.hungteshun.shop.product.vo.Product"/>
 		</set>

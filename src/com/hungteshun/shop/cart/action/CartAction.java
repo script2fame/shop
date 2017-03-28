@@ -6,6 +6,7 @@ import com.hungteshun.shop.cart.vo.Cart;
 import com.hungteshun.shop.cart.vo.CartItem;
 import com.hungteshun.shop.product.service.ProductService;
 import com.hungteshun.shop.product.vo.Product;
+import com.hungteshun.shop.user.vo.User;
 import com.opensymphony.xwork2.ActionSupport;
 /**
  * 购物车模块的action

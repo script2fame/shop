@@ -8,7 +8,7 @@
 	<package name="shop" extends="struts-default" namespace="/">
 		<!-- 设置全局的页面 -->
 		<global-results>
-			<result name="msg">/WEB-INF/jsp/msg.jsp</result>
+			<result name="message">/WEB-INF/jsp/message.jsp</result>
 		</global-results>
 		
 		<!-- 配置首页访问的action -->
@@ -41,6 +41,13 @@
 			<result name="removeFromCart">/WEB-INF/jsp/myCart.jsp</result>
 			<result name="clearCart">/WEB-INF/jsp/myCart.jsp</result>
 			<result name="toMyCart">/WEB-INF/jsp/myCart.jsp</result>
+		</action>
+		<!-- 订单模块的action -->
+		<action name="order_*" class="orderAction" method="{1}">
+			<result name="submitOrder">/WEB-INF/jsp/myOrder.jsp</result>
+			<result name="confirmOrder">/WEB-INF/jsp/confirmOrder.jsp</result>
+			<result name="findOrderByUid">/WEB-INF/jsp/MyAllOrders.jsp</result>
+			<result name="findOrderByOid">/WEB-INF/jsp/myOrder.jsp</result>
 		</action>
 	</package>
 </struts>

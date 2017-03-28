@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+<class name="com.hungteshun.shop.orders.vo.OrderItem" table="orderitem">
+	<id name="itemid" column="itemid">
+		<generator class="native"/>
+	</id>
+	<property name="count" column="count"/>
+	<property name="subtotal" column="subtotal"/>
+	<many-to-one name="product"  class="com.hungteshun.shop.product.vo.Product" column="pid" lazy="false"/>
+	<many-to-one name="orders"  class="com.hungteshun.shop.orders.vo.Orders" column="oid" lazy="false"/>
+</class>
+</hibernate-mapping>

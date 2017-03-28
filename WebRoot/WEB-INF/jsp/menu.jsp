@@ -5,7 +5,7 @@
 		<ul>
 		<s:if test="#session.existUser!=null">
 		<li ><s:property value="#session.existUser.name"></s:property></li>
-			<li ><a href="#">我的订单</a></li>
+			<li ><a href="${pageContext.request.contextPath}/order_findOrderByUid.action?currentPage=1">我的订单</a></li>
 			<li ><a href="${pageContext.request.contextPath}/user_loginOut.action">退出</a>|</li>
 		</s:if>
 		<s:else>

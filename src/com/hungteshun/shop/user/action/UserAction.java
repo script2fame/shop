@@ -97,7 +97,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			// 用户不存在，激活码失效
 			this.addActionError("激活失败");
 		}
-		return "msg";
+		return "message";
 	}
 
 	/**
