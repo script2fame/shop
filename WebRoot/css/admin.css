@@ -1,0 +1,35 @@
+.log{
+	width: 480px;
+	margin: 10px auto;
+	height: 20px;
+	line-height: 20px;
+	color: #18B1E9;
+	text-align:center;
+	font-size:30px;
+	font-weight:bold;
+}
+.logout{
+	float: right;
+	padding:0 10px 0 0;
+	font-size:20px;
+	font-weight:bold;
+	color: blue;
+}
+.dialog-button{
+	text-align:center;
+}
+.textbox{
+			height:20px;
+			margin:0px;
+			padding :0 2px;
+			box-sizing:context-box;
+		}
+
+a{
+	text-decoration: none;
+	color: blue;
+}
+a:hover{
+	text-decoration:none;
+	color: red;
+}

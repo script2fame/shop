@@ -49,5 +49,14 @@
 			<result name="findOrderByUid">/WEB-INF/jsp/MyAllOrders.jsp</result>
 			<result name="findOrderByOid">/WEB-INF/jsp/myOrder.jsp</result>
 		</action>
+		<!-- 后台管理登录模块action -->
+		<action name="admin_*" class="adminAction" method="{1}">
+			<result name="loginSuccess">/WEB-INF/adminJsp/admin_index.jsp</result>
+			<result name="loginFail">/admin.jsp</result>
+		</action>
+		<!-- 后台管理一级分类模块action  -->
+		<action name="admincategory_*" class="adminCategoryAction" method="{1}">
+			<result name="findAllCategory">/WEB-INF/adminJsp/admin_categoryList.jsp</result>
+		</action>
 	</package>
 </struts>

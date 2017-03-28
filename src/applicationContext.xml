@@ -45,6 +45,7 @@
 				<value>com/hungteshun/shop/product/vo/product.hbm.xml</value>
 				<value>com/hungteshun/shop/orders/vo/orderitem.hbm.xml</value>
 				<value>com/hungteshun/shop/orders/vo/orders.hbm.xml</value>
+				<value>com/hungteshun/shop/admin/vo/admin.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
@@ -85,8 +86,17 @@
 		<bean id="cartAction" class="com.hungteshun.shop.cart.action.CartAction" scope="prototype">
 			<property name="productService" ref="productService"/>
 		</bean>
+		<!-- 订单模块的action -->
 		<bean id="orderAction" class="com.hungteshun.shop.orders.action.OrderAction" scope="prototype">
 			<property name="orderService" ref="orderService"/>
+		</bean>
+		<!-- 后台管理员的action -->
+		<bean id="adminAction" class="com.hungteshun.shop.admin.action.AdminAction" scope="prototype">
+			<property name="adminService" ref="adminService"/>
+		</bean>
+		<!-- 后台一级分类管理的action -->
+		<bean id="adminCategoryAction" class="com.hungteshun.shop.admin.action.AdminCategoryAction" scope="prototype">
+			<property name="categoryService" ref="categoryService"/>
 		</bean>
 	<!-- Service的配置 =========================== -->
 		<bean id="userService" class="com.hungteshun.shop.user.service.UserService">
@@ -102,6 +112,9 @@
 		<bean id="orderService" class="com.hungteshun.shop.orders.service.OrderService">
 			<property name="orderDao" ref="orderDao"/>
 		</bean>
+		<bean id="adminService" class="com.hungteshun.shop.admin.service.AdminService">
+			<property name="adminDao" ref="adminDao"/>
+		</bean>
 	<!-- Dao的配置 =========================== -->
 		<bean id="userDao" class="com.hungteshun.shop.user.dao.UserDao">
 			<property name="sessionFactory" ref="sessionFactory"/>
@@ -113,6 +126,9 @@
 			<property name="sessionFactory" ref="sessionFactory"/>
 		</bean>
 		<bean id="orderDao" class="com.hungteshun.shop.orders.dao.OrderDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>
+		<bean id="adminDao" class="com.hungteshun.shop.admin.dao.AdminDao">
 			<property name="sessionFactory" ref="sessionFactory"/>
 		</bean>
 </beans>

@@ -1,0 +1,30 @@
+.log{
+	width: 180px;
+	margin: 0 auto;
+	height: 50px;
+	line-height: 50px;
+	color: #18B1E9;
+	text-align:center;
+	font-size:30px;
+	font-weight:bold;
+}
+.logout{
+	float: right;
+	padding:10px 10px 0 0;
+	font-size:20px;
+	font-weight:bold;
+	color: blue;
+}
+.dialog-button{
+	text-align:center;
+}
+
+
+a{
+	text-decoration: none;
+	color: blue;
+}
+a:hover{
+	text-decoration:underline;
+	color: red;
+}
