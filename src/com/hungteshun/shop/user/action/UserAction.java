@@ -40,8 +40,8 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	/**
 	 * 跳转到注册页面
 	 */
-	public String registePage() {
-		return "registePage";
+	public String registPage() {
+		return "registPage";
 	}
 
 	/**
@@ -73,7 +73,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			if(securitycode.equalsIgnoreCase(existsecuritycode)){
 				userService.save(user);
 				this.addActionMessage("请前往邮箱激活...");
-				return "registeSuccess";
+				return "registSuccess";
 			}else{
 				this.addActionError("验证码输入错误");
 				return "registFail";

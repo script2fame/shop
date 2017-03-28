@@ -9,99 +9,7 @@
 	rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/css/register.css"
 	rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"/>
-<script type="text/javascript">
-	function checkForm(){
-		var username = $("#username").val();
-		var password = $("#password").val();
-		var repassword = $("#repassword").val();
-		var email = $("#email").val();
-		var phone = $("#phone").val();
-		var addr = $("#addr").val();
-		var securitycode = $("#securitycode").val();
-		if(username == ""||username == null){
-			alert("用户名不能为空!");
-			return false;
-		}
-		if(password ==""||password==null){
-			alert("密码不能为空!");
-			return false;
-		}
-		if(repassword != password){
-			alert("两次密码输入不一致!");
-			return false;
-		}
-		if(email ==""||email== null){
-			alert("邮箱不能为空!");
-			return false;
-		}else{
-			var email_flag=  /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
-			if(!email_flag.test(email)){
-				alert("请输入正确的邮箱格式!");
-				return false;
-			}
-		}
-		if(phone ==""||phone== null){
-			alert("电话不能为空!");
-			return false;
-		}else{
-			var phone_flag=  /^1[34578]\d{9}$/;
-			if(!phone_flag.test(phone)){
-				alert("请输入正确的电话号码!");
-				return false;
-			}
-		}
-		if(addr == ""||addr == null){
-			alert("地址不能为空!");
-			return false;
-		}
-		if(securitycode == ""||securitycode == null){
-			alert("请输入验证码!");
-			return false;
-		}
-	}
-	function checkusername(){
-		var username = $.trim($("#username").val());
-		if(username!=null || username!=""){
-			//1.创建异步交互对象
-			var xhr = createXmlHttp();
-			//2.设置监听
-			xhr.onreadystatechange = function(){
-				if(xhr.readyState == 4){
-					if(xhr.status == 200){
-					$("#backmsg").html(xhr.responseText);
-					}
-				}
-			}
-			//3.打开链接
-			xhr.open("GET","${pageContext.request.contextPath}/user_checkUsername.action?time="+new Date().getTime()+"&username="+username,true);
-			//4.发送
-			xhr.send(null);
-		}
-	}
-	function createXmlHttp(){
-		   var xmlHttp;
-		   try{ // Firefox, Opera 8.0+, Safari
-		        xmlHttp=new XMLHttpRequest();
-		    }
-		    catch (e){
-			   try{// Internet Explorer
-			         xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
-			      }
-			    catch (e){
-			      try{
-			         xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
-			      }
-			      catch (e){}
-			      }
-		    }
-			return xmlHttp;
-		 }
-	function changeSecurityCode(){
-		var old_securitycode = document.getElementById("securitycodeimg");
-		old_securitycode.src="${pageContext.request.contextPath}/securitycode_generate.action?time="+new Date().getTime();
-	}
-</script>
+
 </head>
 <body>
 	<div class="container header">
@@ -127,10 +35,7 @@
 					<div class="title">
 						<strong>会员注册<span style="color:red"><s:actionerror /></span></strong>
 					</div>
-					<form id="registerForm"
-						action="${pageContext.request.contextPath}/user_regist.action"
-						method="post" novalidate="novalidate"
-						onsubmit="return checkForm();">
+					<form id="registerForm" action="${pageContext.request.contextPath}/user_regist.action" method="post" novalidate="novalidate" onsubmit="return checkForm();">
 						<table>
 							<tbody>
 								<tr>
@@ -181,9 +86,7 @@
 								</tr>
 								<tr>
 									<th><span class="requiredField">*</span>验证码:</th>
-									<td><span class="fieldSet"><input type="text"
-											id="securitycode" name="securitycode" class="text captcha"
-											maxlength="4" autocomplete="off"><img
+									<td><span class="fieldSet"><input type="text" id="securitycode" name="securitycode" class="text captcha"maxlength="4" autocomplete="off"><img
 												id="securitycodeimg"
 												src="${pageContext.request.contextPath}/securitycode_generate.action"
 												onclick="changeSecurityCode()" title="点击更换验证码"></span id="codemsg"><span></span></td>
@@ -323,5 +226,98 @@
 			frameborder="0" border="0" scrolling="no"></iframe>
 	</div>
 </body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
 
+<script>
+	function checkForm(){
+		var username = $("#username").val();
+		var password = $("#password").val();
+		var repassword = $("#repassword").val();
+		var email = $("#email").val();
+		var phone = $("#phone").val();
+		var addr = $("#addr").val();
+		var securitycode = $("#securitycode").val();
+		if(username == null || username == ''){
+			alert("用户名不能为空!");
+			return false;
+		}
+		if(password ==""||password==null){
+			alert("密码不能为空!");
+			return false;
+		}
+		if(repassword != password){
+			alert("两次密码输入不一致!");
+			return false;
+		}
+		if(email ==""||email== null){
+			alert("邮箱不能为空!");
+			return false;
+		}else{
+			var email_flag=  /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+			if(!email_flag.test(email)){
+				alert("请输入正确的邮箱格式!");
+				return false;
+			}
+		}
+		if(phone ==""||phone== null){
+			alert("电话不能为空!");
+			return false;
+		}else{
+			var phone_flag=  /^1[34578]\d{9}$/;
+			if(!phone_flag.test(phone)){
+				alert("请输入正确的电话号码!");
+				return false;
+			}
+		}
+		if(addr == ""||addr == null){
+			alert("地址不能为空!");
+			return false;
+		}
+		if(securitycode == ""||securitycode == null){
+			alert("请输入验证码!");
+			return false;
+		}
+	}
+	function checkusername(){
+		var username = $("#username").val();
+		if(username!=null || username!=""){
+			//1.创建异步交互对象
+			var xhr = createXmlHttp();
+			//2.设置监听
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4){
+					if(xhr.status == 200){
+					$("#backmsg").html(xhr.responseText);
+					}
+				}
+			}
+			//3.打开链接
+			xhr.open("GET","${pageContext.request.contextPath}/user_checkUsername.action?time="+new Date().getTime()+"&username="+username,true);
+			//4.发送
+			xhr.send(null);
+		}
+	}
+	function createXmlHttp(){
+		   var xmlHttp;
+		   try{ // Firefox, Opera 8.0+, Safari
+		        xmlHttp=new XMLHttpRequest();
+		    }
+		    catch (e){
+			   try{// Internet Explorer
+			         xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+			      }
+			    catch (e){
+			      try{
+			         xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+			      }
+			      catch (e){}
+			      }
+		    }
+			return xmlHttp;
+		 }
+	function changeSecurityCode(){
+		var old_securitycode = document.getElementById("securitycodeimg");
+		old_securitycode.src="${pageContext.request.contextPath}/securitycode_generate.action?time="+new Date().getTime();
+	}
+</script>
 </html>

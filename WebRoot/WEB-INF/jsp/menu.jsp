@@ -12,7 +12,7 @@
 			<li id="headerLogin" class="headerLogin" style="display: list-item;"><a
 				href="${pageContext.request.contextPath}/user_loginPage.action">登录</a>|</li>
 			<li id="headerRegister" class="headerRegister"
-				style="display: list-item;"><a href="${pageContext.request.contextPath}/user_registePage.action">注册</a>|</li>
+				style="display: list-item;"><a href="${pageContext.request.contextPath}/user_registPage.action">注册</a>|</li>
 		</s:else>
 			<li><a>会员中心</a> |</li>
 			<li><a>购物指南</a> |</li>

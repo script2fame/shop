@@ -17,10 +17,10 @@
 		</action>
 		<!-- 配置用户模块的action -->
 		<action name="user_*" class="userAction" method="{1}">
-			<result name="registePage">/WEB-INF/jsp/registePage.jsp</result>
-			<result name="registeSuccess">/WEB-INF/jsp/msg.jsp</result>
-			<result name="registeFail">/WEB-INF/jsp/registePage.jsp</result>
-			<result name="input">/WEB-INF/jsp/registePage.jsp</result>
+			<result name="registPage">/WEB-INF/jsp/registPage.jsp</result>
+			<result name="registSuccess">/WEB-INF/jsp/message.jsp</result>
+			<result name="registFail">/WEB-INF/jsp/registPage.jsp</result>
+			<result name="input">/WEB-INF/jsp/registPage.jsp</result>
 			<result name="loginPage">/WEB-INF/jsp/loginPage.jsp</result>
 			<result name="login">/WEB-INF/jsp/loginPage.jsp</result>
 			<result name="loginSuccess" type="redirectAction">index</result>
