@@ -56,7 +56,9 @@
 		</action>
 		<!-- 后台管理一级分类模块action  -->
 		<action name="admincategory_*" class="adminCategoryAction" method="{1}">
-			<result name="findAllCategory">/WEB-INF/adminJsp/admin_categoryList.jsp</result>
+			<result name="findAllCategory">/WEB-INF/adminJsp/category/admin_categoryList.jsp</result>
+			<result name="categoryAddPage">/WEB-INF/adminJsp/category/admin_categoryAddPage.jsp</result>
+			<result name="addCategory" type="redirectAction">admincategory_findAllCategory.action</result>
 		</action>
 	</package>
 </struts>

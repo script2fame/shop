@@ -32,5 +32,22 @@ public class AdminCategoryAction extends ActionSupport implements ModelDriven<Ca
 		ActionContext.getContext().getValueStack().set("categoryList", categoryList);
 		return "findAllCategory";
 	}
+	
+	/**
+	 * 跳转到添加一级分类页面
+	 * @return
+	 */
+	public String categoryAddPage(){
+		return "categoryAddPage";
+	}
+	/**
+	 * 添加一级分类
+	 * @return
+	 */
+	public String addCategory(){
+		categoryService.addCategory(category);
+		return "addCategory";
+	}
+	
 
 }

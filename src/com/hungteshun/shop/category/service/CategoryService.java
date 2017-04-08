@@ -19,4 +19,13 @@ public class CategoryService {
 	public List<Category> findAllCategory(){
 		return categoryDao.findAllCategory();
 	}
+
+	/**
+	 * 添加一级分类的方法
+	 * @param category
+	 */
+	public void addCategory(Category category) {
+		categoryDao.addCategory(category);
+		
+	}
 }

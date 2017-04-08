@@ -17,4 +17,12 @@ public class CategoryDao extends HibernateDaoSupport{
 			return null;
 		}
 	}
+
+	/**
+	 * 添加一级分类
+	 * @param category
+	 */
+	public void addCategory(Category category) {
+		this.getHibernateTemplate().save(category);
+	}
 }

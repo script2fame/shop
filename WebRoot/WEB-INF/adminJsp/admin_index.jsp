@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,10 +10,15 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/admin.css">
 
 </head>
-<body class="easyui-layout">
+<body id="main" class="easyui-layout">
 	<div data-options="region:'north',split:false" style="height:100px;background:#eee">
 		<div class="log">网上商城后台管理系统</div>
-		<div class='logout'>您好，<span id='username'></span>|<a href="#">退出系统</a></div>
+		<s:if test="#session.existAdmin != null">
+			<div class='logout'>您好，<span id='username'><s:property value='#session.existAdmin.username'/></span>|<a href="#">退出系统</a></div>
+		</s:if>
+		<s:else>
+			<div class='logout'>您好，<span id='username'>您还没有登录</span></div>
+		</s:else>
 	</div>
 	
 	<div data-options="region:'west',title:'功能导航',split:false" style="width:200px;">
@@ -23,19 +29,19 @@
     				<li>
     					<span><div >用户管理</div></span>
     					<ul>
-    						<li><span><div onclick="addTabs_users('用户管理')">用户管理</div></span></li>
+    						<li><span><div onclick="admin_switchToUsers()">用户管理</div></span></li>
     					</ul>
     				</li>
     				<li>
     					<span><div >一级分类管理</div></span>
     					<ul>
-    						<li><span><div onclick="addTabs_category('一级分类管理')">一级分类管理</div></span></li>
+    						<li><span><div onclick="admin_switchToCategory()">一级分类管理</div></span></li>
     					</ul>
     				</li>
     				<li>
     					<span><div>二级分类管理</div></span>
     					<ul>
-    						<li><span><div>二级分类管理</div></span></li>
+    						<li><span><div onclick="admin_switchToCategorySecond()">二级分类管理</div></span></li>
     					</ul>
     				</li>
     			</ul>
@@ -43,7 +49,7 @@
     	</ul>
     </div> 
     
-    <div data-options="region:'center',title:'桌面',noheader:true" style="padding:0 0;background:#eee;">
+    <div  data-options="region:'center',title:'桌面',noheader:true" style="padding:0 0;background:#eee;">
     	<div id="tabs">
     		<div title="初始界面" style="padding:0 5px;display:block;">
     			管理员主界面
