@@ -49,5 +49,33 @@ public class AdminCategoryAction extends ActionSupport implements ModelDriven<Ca
 		return "addCategory";
 	}
 	
-
+	
+	/**
+	 * 删除一级分类
+	 * @return
+	 */
+	public String removeCategory(){
+		//先查找出该一级分类，然后删除，如果不级联则不删除该一级分类下的所有的二级分类
+		category = categoryService.findCategoryByCid(category.getCid());
+		categoryService.removeCategory(category);
+		return "removeCategory";
+	}
+	
+	/**
+	 * 跳转到编辑页面
+	 * @return
+	 */
+	public String editCategory(){
+		category = categoryService.findCategoryByCid(category.getCid());
+		return "editCategory";
+	}
+	/**
+	 * 修改一级分类
+	 * @return
+	 */
+	public String updateCategory(){
+		//先查找出该一级分类
+		categoryService.updateCategory(category);
+		return "updateCategory";
+	}
 }

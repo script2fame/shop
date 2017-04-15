@@ -32,18 +32,15 @@
 								<tr onmouseover="this.style.backgroundColor = 'white'"
 									onmouseout="this.style.backgroundColor = '#F5FAFE';">
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
-										width="18%"><s:property value="#status.count" /></td>
+										width="18%"><s:property value="#category.cid" /></td>
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 										width="17%"><s:property value="#category.cname" /></td>
-									<td align="center" style="HEIGHT: 22px"><a
-										href="${pageContext.request.contextPath}/admincategory_edit.action?cid=<s:property value="#category.cid"/>"
-										class="easyui-linkbutton"
-										data-options="iconCls:'icon-edit',plain:true"> </a></td>
-
-									<td align="center" style="HEIGHT: 22px"><a
-										href="${pageContext.request.contextPath}/admincategory_delete.action?cid=<s:property value="#category.cid"/>"
-										class="easyui-linkbutton"
-										data-options="iconCls:'icon-cancel',plain:true"> </a></td>
+									<td align="center" style="HEIGHT: 22px">
+									<button type="button" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true" onclick="admincategory_edit_do(<s:property value='#category.cid' />)">修改</button>
+									</td>
+									<td align="center" style="HEIGHT: 22px">
+									<button type="button" class="easyui-linkbutton" data-options="iconCls:'icon-cancel',plain:true" onclick="admincategory_remove_do(<s:property value='#category.cid' />)">删除</button>	
+									</td>
 								</tr>
 							</s:iterator>
 						</table>
@@ -51,5 +48,5 @@
 				</tr>
 			</tbody>
 		</table>
-	</form>
+</form>
 	

@@ -9,7 +9,8 @@ import com.hungteshun.shop.user.vo.User;
 /**
  * 用户模块持久层代码
  * 
- * @author hungteshun黄调聪 继承HibernateDaoSupport，会为我们提供一个hibernate模板，
+ * @author hungteshun黄调聪 
+ * 继承HibernateDaoSupport，会为我们提供一个hibernate模板，
  *         我们需要将sessionFactory注入到Dao中，就可以使用hibernate模板
  */
 public class UserDao extends HibernateDaoSupport {

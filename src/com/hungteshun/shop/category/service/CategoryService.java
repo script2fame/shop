@@ -26,6 +26,29 @@ public class CategoryService {
 	 */
 	public void addCategory(Category category) {
 		categoryDao.addCategory(category);
+	}
+
+	/**
+	 * 根据一级分类id查找一级分类
+	 * @param cid
+	 */
+
+	public Category findCategoryByCid(Integer cid) {
+		return categoryDao.findCategoryByCid(cid);
 		
+	}
+	/**
+	 * 删除一级分类
+	 * @param category
+	 */
+	public void removeCategory(Category category) {
+		categoryDao.removeCategory(category);
+	}
+	/**
+	 * 修改一级分类
+	 * @param category
+	 */
+	public void updateCategory(Category category) {
+		categoryDao.updateCategory(category);
 	}
 }

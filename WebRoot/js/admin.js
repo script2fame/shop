@@ -86,3 +86,96 @@ function admincategory_save_do(){
 		}
 	});
 }
+
+/**
+ * 使用ajax异步提交一级分类id移除一级分类
+ */
+function admincategory_remove_do(cid){
+	$.messager.confirm('删除','是否确认删除该条记录?',function(flag){
+		if(!flag){
+			
+			$.messager.show({
+				width:300,
+				height:160,
+				title:'善意的提醒',
+				msg:'您取消了删除!',
+				timeout:3000
+			});
+			return false;
+		}
+		$.ajax({
+			url:'${pageContext.request.contextPath}/admincategory_removeCategory.action',
+			type:'post',
+			data:{
+				cid:cid
+			},
+			success:function(data){
+				console.log(data);
+				if(data!=null){
+					$.messager.show({
+						width:300,
+						height:160,
+						title:'么么哒',
+						msg:'您的记录删除成功^_^!',
+						timeout:3000
+					});
+					var center = $("#main").layout('panel','center');
+					var url = "${pageContext.request.contextPath}/admincategory_findAllCategory.action";
+					center.panel('refresh',url);
+				}
+			},
+			error:function(errordata){
+				console.log(errordata);
+			}
+		});
+		
+	});
+	
+}
+/**
+ * 跳转到编辑页面
+ */
+function admincategory_edit_do(cid){
+	$.ajax({
+		url:'${pageContext.request.contextPath}/admincategory_editCategory.action',
+		type:'post',
+		data:{
+			cid:cid
+		},
+		success:function(data){
+			if(data!=null){
+				var center = $("#main").layout('panel','center');
+				var url = "${pageContext.request.contextPath}/admincategory_editCategory.action?cid="+cid;
+				center.panel('refresh',url);
+				console.log("haha");
+			}
+		},
+		error:function(errordata){
+			console.log(errordata);
+		}
+	});
+}
+/**
+ * 修改一级分类
+ */
+function admincategory_update_do(){
+	$.ajax({
+		url:'${pageContext.request.contextPath}/admincategory_updateCategory.action',
+		type:'post',
+		data:{
+			cid:$('#admincategory_update_do_cid').val(),
+			cname:$('#admincategory_update_do_cname').val()
+		},
+		success:function(data){
+			console.log(data);
+			if(data!=null){
+				var center = $("#main").layout('panel','center');
+				var url = "${pageContext.request.contextPath}/admincategory_findAllCategory.action";
+				center.panel('refresh',url);
+			}
+		},
+		error:function(errordata){
+			console.log(errordata);
+		}
+	});
+}

@@ -51,7 +51,7 @@ public class OrderDao extends HibernateDaoSupport{
 	}
 
 	/**
-	 * 根据商品ID查询商品
+	 * 根据订单ID查询订单
 	 * @param oid
 	 * @return
 	 */

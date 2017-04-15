@@ -59,6 +59,9 @@
 			<result name="findAllCategory">/WEB-INF/adminJsp/category/admin_categoryList.jsp</result>
 			<result name="categoryAddPage">/WEB-INF/adminJsp/category/admin_categoryAddPage.jsp</result>
 			<result name="addCategory" type="redirectAction">admincategory_findAllCategory.action</result>
+			<result name="removeCategory" type="redirectAction">admincategory_findAllCategory.action</result>
+			<result name="editCategory">/WEB-INF/adminJsp/category/update_editPage.jsp</result>
+			<result name="updateCategory" type="redirectAction">admincategory_findAllCategory</result>
 		</action>
 	</package>
 </struts>
