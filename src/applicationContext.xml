@@ -98,6 +98,11 @@
 		<bean id="adminCategoryAction" class="com.hungteshun.shop.admin.action.AdminCategoryAction" scope="prototype">
 			<property name="categoryService" ref="categoryService"/>
 		</bean>
+		<!-- 后台二级分类管理的action -->
+		<bean id="adminCategorySecondAction" class="com.hungteshun.shop.admin.action.AdminCategorySecondAction" scope="prototype">
+			<property name="categorySecondService" ref="categorySecondService"/>
+			<property name="categoryService" ref="categoryService"/>
+		</bean>
 	<!-- Service的配置 =========================== -->
 		<bean id="userService" class="com.hungteshun.shop.user.service.UserService">
 			<!-- 注入UserDao -->
@@ -105,6 +110,9 @@
 		</bean>
 		<bean id="categoryService" class="com.hungteshun.shop.category.service.CategoryService">
 			<property name="categoryDao" ref="categoryDao"/>
+		</bean>
+		<bean id="categorySecondService" class="com.hungteshun.shop.categorysecond.service.CategorySecondService">
+			<property name="categorySecondDao" ref="categorySecondDao"/>
 		</bean>
 		<bean id="productService" class="com.hungteshun.shop.product.service.ProductService">
 			<property name="productDao" ref="productDao"/>
@@ -120,6 +128,9 @@
 			<property name="sessionFactory" ref="sessionFactory"/>
 		</bean>
 		<bean id="categoryDao" class="com.hungteshun.shop.category.dao.CategoryDao">
+			<property name="sessionFactory" ref="sessionFactory"/>
+		</bean>
+		<bean id="categorySecondDao" class="com.hungteshun.shop.categorysecond.dao.CategorySecondDao">
 			<property name="sessionFactory" ref="sessionFactory"/>
 		</bean>
 		<bean id="productDao" class="com.hungteshun.shop.product.dao.ProductDao">

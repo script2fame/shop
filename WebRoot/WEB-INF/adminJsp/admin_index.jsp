@@ -41,7 +41,7 @@
     				<li>
     					<span><div>二级分类管理</div></span>
     					<ul>
-    						<li><span><div onclick="admin_switchToCategorySecond()">二级分类管理</div></span></li>
+    						<li><span><div onclick="admin_switchToCategorySecond(1)">二级分类管理</div></span></li>
     					</ul>
     				</li>
     			</ul>

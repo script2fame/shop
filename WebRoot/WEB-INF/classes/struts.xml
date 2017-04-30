@@ -63,5 +63,14 @@
 			<result name="editCategory">/WEB-INF/adminJsp/category/update_editPage.jsp</result>
 			<result name="updateCategory" type="redirectAction">admincategory_findAllCategory</result>
 		</action>
+		<!-- 后台管理二级分类模块action -->
+		<action name="admincategorysecond_*" class="adminCategorySecondAction" method="{1}">
+			<result name="findAllcategorySecond">/WEB-INF/adminJsp/categorySecond/admin_categorySecondList.jsp</result>
+			<result name="editCategorySecond">/WEB-INF/adminJsp/categorySecond/admin_categorySecondAddPage.jsp</result>
+			<result name="addCategorySecond" type="redirectAction">admincategorysecond_findAllcategorySecond.action</result>
+			<result name="deleteCategorySecond" type="redirectAction">admincategorysecond_findAllcategorySecond.action</result>
+			<result name="updateCategorySecond_page">/WEB-INF/adminJsp/categorySecond/updateCategorySecond_page.jsp</result>
+			<result name="updateCategorySecond_do" type="redirectAction">admincategorysecond_findAllcategorySecond.action</result>
+		</action>
 	</package>
 </struts>
