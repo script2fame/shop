@@ -75,4 +75,12 @@ public class CategorySecondService {
 	public void updateCategorySecond(CategorySecond categorySecond) {
 		categorySecondDao.updateCategorySecond(categorySecond);
 	}
+
+	/**
+	 * 查询所有的二级分类
+	 * @return 
+	 */
+	public List<CategorySecond> findAll() {
+		return categorySecondDao.findAll();
+	}
 }

@@ -59,6 +59,15 @@ public class CategorySecondDao extends HibernateDaoSupport {
 	 */
 	public void updateCategorySecond(CategorySecond categorySecond) {
 		this.getHibernateTemplate().update(categorySecond);
+	}
+	/**
+	 * 查询所有的二级分类
+	 * @return
+	 */
+	public List<CategorySecond> findAll() {
+		String hql = "from CategorySecond";
+		return this.getHibernateTemplate().find(hql);
+		
 	}	
 
 }

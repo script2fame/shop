@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
+import com.hungteshun.shop.orders.vo.OrderItem;
 import com.hungteshun.shop.orders.vo.Orders;
 import com.hungteshun.shop.utils.PageHibernateCallback;
 
@@ -65,5 +66,47 @@ public class OrderDao extends HibernateDaoSupport{
 	 */
 	public void update(Orders currentOrder) {
 		this.getHibernateTemplate().update(currentOrder);
+	}
+	
+	/**
+	 * 查询所有的订单总数
+	 * @return
+	 */
+	public Integer findTotalcount() {
+		String hql = "select count(*) from Orders";
+		List<Long> countList = this.getHibernateTemplate().find(hql);
+		if(countList != null && countList.size() > 0){
+			return countList.get(0).intValue();
+		}
+		return 0;
+	}
+	
+	/**
+	 * 分页查询所有的订单
+	 * @param begin
+	 * @param limit
+	 * @return
+	 */
+	public List<Orders> findAllOrdersWithPage(Integer begin, Integer limit) {
+		String hql = "from Orders";
+		List<Orders> orderList = this.getHibernateTemplate().execute(new PageHibernateCallback<Orders>(hql, null, begin, limit));
+		if(orderList != null && orderList.size() > 0){
+			return orderList;
+		}
+		return null;
+	}
+	
+	/**
+	 * 根据订单id查询订单项
+	 * @param oid
+	 * @return
+	 */
+	public List<OrderItem> findOrderItemsByOid(Integer oid) {
+		String hql = "from OrderItem os where os.orders.oid = ?";
+		List<OrderItem> orderItems = this.getHibernateTemplate().find(hql, oid);
+		if(orderItems != null && orderItems.size() > 0){
+			return orderItems;
+		}
+		return null;
 	}
 }

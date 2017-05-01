@@ -50,16 +50,16 @@
 					<s:iterator var="orders" value="ordersPageBean.list">
 						<tr>
 							<th colspan="5">订单状态：
-								<s:if test="#orders.state==1">
+								<s:if test="#orders.state==0">
 									<a href="${pageContext.request.contextPath}/order_findOrderByOid.action?oid=<s:property value='#orders.oid'/>" style="color:red">未付款</a>
 								</s:if>
-								<s:if test="#orders.state==2">
+								<s:if test="#orders.state==1">
 									<span style="color:red">未发货</span>
 								</s:if>
-								<s:if test="#orders.state==3">
-									<span style="color:red"><a href="#">确认收货</a></span>
+								<s:if test="#orders.state==2">
+									<a href="${pageContext.request.contextPath}/order_updateState.action?oid=<s:property value='#orders.oid'/>" style="color:blue">确认收货</a>
 								</s:if>
-								<s:if test="#orders.state==4">
+								<s:if test="#orders.state==3">
 									<span style="color:green">交易完成</span>
 								</s:if>
 							</th>

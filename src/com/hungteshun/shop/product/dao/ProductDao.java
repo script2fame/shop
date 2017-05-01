@@ -108,11 +108,59 @@ public class ProductDao extends HibernateDaoSupport{
 	public List<Product> findByPageCsid(Integer csid, int begin, int limit) {
 		String hql = "select p from Product p join p.categorySecond cs where cs.csid = ?";
 		List<Product> productList = this.getHibernateTemplate().execute(new PageHibernateCallback<Product>(hql, new Object[]{csid}, begin, limit));
-		if(productList!=null&&productList.size()>0){
+		if (productList != null && productList.size() > 0) {
+			return productList;
+		}
+		return null;
+	}
+	
+	/**
+	 * 查询所有商品数量
+	 * @return
+	 */
+	public int findCountAll() {
+		String hql = "select count(*) from Product";
+		List<Long> numList = this.getHibernateTemplate().find(hql);
+		if (numList != null && numList.size() > 0) {
+			return numList.get(0).intValue();
+		}
+		return 0;
+	}
+	/**
+	 * 查询所有商品
+	 * @param begin
+	 * @param limit
+	 * @return
+	 */
+	public List<Product> findAll(int begin, int limit) {
+		String hql ="from Product order by pdate desc";
+		List<Product> productList = this.getHibernateTemplate().execute(new PageHibernateCallback<Product>(hql, null, begin, limit));
+		if (productList != null && productList.size() > 0) {
 			return productList;
 		}
 		return null;
 	}
 
+	/**
+	 * 保存商品
+	 * @param product
+	 */
+	public void save(Product product) {
+		this.getHibernateTemplate().save(product);
+	}
 
+	/*
+	 * 删除商品
+	 */
+	public void delete(Product product) {
+		this.getHibernateTemplate().delete(product);
+	}
+
+	/**
+	 * 修改商品信息
+	 * @param product
+	 */
+	public void update(Product product) {
+		this.getHibernateTemplate().update(product);
+	}
 }

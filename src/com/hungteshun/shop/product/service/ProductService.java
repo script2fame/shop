@@ -1,11 +1,18 @@
 package com.hungteshun.shop.product.service;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hungteshun.shop.product.dao.ProductDao;
 import com.hungteshun.shop.product.vo.Product;
+import com.hungteshun.shop.utils.FormatDate;
 import com.hungteshun.shop.utils.pageBean;
 
 @Transactional
@@ -105,6 +112,97 @@ public class ProductService {
 		List<Product> pList = productDao.findByPageCsid(csid,begin,limit);
 		pageBean.setList(pList);
 		return pageBean;
+	}
+	/**
+	 * 查询所有商品带分页
+	 * @param currentPage
+	 * @return
+	 */
+	public pageBean<Product> findAllProductWithPage(Integer currentPage) {
+		pageBean<Product> pageBean = new pageBean<Product>();
+		//设置当前页:
+		pageBean.setCurrentPage(currentPage);
+		//设置每页的记录数
+		int limit = 12;
+		pageBean.setLimit(limit);
+		//设置总的记录数
+		int totalCount = 0;
+		totalCount = productDao.findCountAll();
+		pageBean.setTotalCount(totalCount);
+		//设置总页数
+		int totalPage = 0;
+		//totalPage = (int) Math.ceil(totalCount/limit);
+		if(totalCount%limit==0){
+			totalPage = totalCount/limit;
+		}else{
+			totalPage = totalCount/limit + 1;
+		}
+		pageBean.setTotalPage(totalPage);
+		//显示的数据的集合
+		int begin =(currentPage - 1)*limit;
+		List<Product> pList = productDao.findAll(begin,limit);
+		pageBean.setList(pList);
+ 		return pageBean;
+	}
+	
+	/**
+	 * 保存图片
+	 * @param product
+	 * @param upload
+	 * @param uploadFileName 
+	 * @throws IOException 
+	 * @throws ParseException 
+	 */
+	public void save(Product product, File upload, String uploadFileName) throws IOException, ParseException {
+		Date date = FormatDate.formatDate(new Date());
+		product.setPdate(date);
+		if(upload != null){
+			//获得文件上传后要保存到服务器的磁盘绝对路径
+			String realPath = ServletActionContext.getServletContext().getRealPath("/products");
+			//创建一个文件
+			File diskFile = new File(realPath + "//" +uploadFileName);
+			//拷贝文件，完成保存到数据库
+			FileUtils.copyFile(upload, diskFile);
+			product.setImage("products/"+uploadFileName);
+			productDao.save(product);
+		}
+		
+	}
+
+	/**
+	 * 删除商品，同时删除商品的图片
+	 * @param product
+	 */
+	public void delete(Product product) {
+		String path = product.getImage();
+		if(path != null){
+			String realPath = ServletActionContext.getServletContext().getRealPath("/"+path);
+			File file = new File(realPath);
+			file.delete();
+		}
+		productDao.delete(product);
+	}
+
+	public void update(Product product, File upload, String uploadFileName) throws ParseException, IOException {
+		Date date = FormatDate.formatDate(new Date());
+		product.setPdate(date);
+		if(upload != null){
+			//获得文件上传后要保存到服务器的磁盘绝对路径
+			String realPath = ServletActionContext.getServletContext().getRealPath("/products");
+			//创建一个文件
+			File diskFile = new File(realPath + "//" +uploadFileName);
+			//拷贝文件，完成保存到数据库
+			FileUtils.copyFile(upload, diskFile);
+			//删除原来的图片
+			String path = product.getImage();
+			String old_realPath = ServletActionContext.getServletContext().getRealPath("/"+path);
+			File file = new File(old_realPath);
+			if(file.exists()){
+				file.delete();
+			}
+			product.setImage("products/"+uploadFileName);
+		}
+		productDao.update(product);
 	}
 	
 }

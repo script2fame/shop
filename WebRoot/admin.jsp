@@ -39,7 +39,7 @@
 			<img src="${pageContext.request.contextPath}/images/avtar.png" />
 		</div>
 		<span class="signin"><s:actionerror /></span>
-		<form id="adminLoginForm" method="post" action="${pageContext.request.contextPath}/admin_login.action" >
+		<form id="adminLoginForm" method="post" action="${pageContext.request.contextPath}/admin_login.action" target="_parent" >
 			<input type="text" name="username" class="text" value="Username"
 				onfocus="this.value = '';"
 				onblur="if (this.value == '') {this.value = 'Username';}">

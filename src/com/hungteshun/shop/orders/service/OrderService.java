@@ -107,4 +107,46 @@ public class OrderService {
 	}
 
 
+	/**
+	 * 分页查询所有的订单
+	 * @param currentPage
+	 * @return
+	 */
+	public pageBean<Orders> findAllOrdersWithPage(Integer currentPage) {
+		pageBean<Orders> orderPageBean = new pageBean<Orders>();
+		//设置当前页
+		orderPageBean.setCurrentPage(currentPage);
+		//每一页显示的记录数
+		Integer limit = 4;
+		orderPageBean.setLimit(limit);
+		//设置总的记录数
+		Integer totalCount = 0;
+		totalCount = orderDao.findTotalcount();
+		orderPageBean.setTotalCount(totalCount);
+		//设置总页数
+		Integer totalPage = 0;
+		if(totalCount % limit == 0){
+			totalPage = totalCount / limit;
+		}else {
+			totalPage = totalCount / limit + 1;
+		}
+		orderPageBean.setTotalPage(totalPage);
+		//设置每一页要显示的数据集合
+		Integer begin = (currentPage - 1) * limit;
+		List<Orders> orderList = orderDao.findAllOrdersWithPage(begin,limit);
+		orderPageBean.setList(orderList);
+		return orderPageBean;
+	}
+
+
+	/**
+	 * 根据订单查询订单明细
+	 * @param oid
+	 * @return
+	 */
+	public List<OrderItem> findOrderItemsByOid(Integer oid) {
+		return orderDao.findOrderItemsByOid(oid);
+	}
+
+
 }

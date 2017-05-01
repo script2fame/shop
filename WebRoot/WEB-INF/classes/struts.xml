@@ -6,9 +6,15 @@
 <struts>
     <constant name="struts.devMode" value="false" />
 	<package name="shop" extends="struts-default" namespace="/">
+		
+		<!-- 配置拦截器 -->
+		<interceptors>
+			<interceptor name="AdminInterceptor" class="com.hungteshun.shop.admin.action.interceptor.AdminInterceptor"/>
+		</interceptors>
 		<!-- 设置全局的页面 -->
 		<global-results>
 			<result name="message">/WEB-INF/jsp/message.jsp</result>
+			<result name="adminNotExist">/admin.jsp</result>
 		</global-results>
 		
 		<!-- 配置首页访问的action -->
@@ -48,11 +54,13 @@
 			<result name="confirmOrder">/WEB-INF/jsp/confirmOrder.jsp</result>
 			<result name="findOrderByUid">/WEB-INF/jsp/MyAllOrders.jsp</result>
 			<result name="findOrderByOid">/WEB-INF/jsp/myOrder.jsp</result>
+			<result name="updateState" type="redirectAction">order_findOrderByUid.action?currentPage=1</result>
 		</action>
 		<!-- 后台管理登录模块action -->
 		<action name="admin_*" class="adminAction" method="{1}">
 			<result name="loginSuccess">/WEB-INF/adminJsp/admin_index.jsp</result>
 			<result name="loginFail">/admin.jsp</result>
+			<result name="logout">/admin.jsp</result>
 		</action>
 		<!-- 后台管理一级分类模块action  -->
 		<action name="admincategory_*" class="adminCategoryAction" method="{1}">
@@ -62,6 +70,8 @@
 			<result name="removeCategory" type="redirectAction">admincategory_findAllCategory.action</result>
 			<result name="editCategory">/WEB-INF/adminJsp/category/update_editPage.jsp</result>
 			<result name="updateCategory" type="redirectAction">admincategory_findAllCategory</result>
+			<interceptor-ref name="AdminInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
 		</action>
 		<!-- 后台管理二级分类模块action -->
 		<action name="admincategorysecond_*" class="adminCategorySecondAction" method="{1}">
@@ -71,6 +81,27 @@
 			<result name="deleteCategorySecond" type="redirectAction">admincategorysecond_findAllcategorySecond.action</result>
 			<result name="updateCategorySecond_page">/WEB-INF/adminJsp/categorySecond/updateCategorySecond_page.jsp</result>
 			<result name="updateCategorySecond_do" type="redirectAction">admincategorysecond_findAllcategorySecond.action</result>
+			<interceptor-ref name="AdminInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
+		</action>
+		<!-- 后台商品管理模块action -->
+		<action name="adminproduct_*" class="adminProductAction" method="{1}">
+			<result name="findAllProduct">/WEB-INF/adminJsp/product/admin_allProductList.jsp</result>
+			<result name="addProduct_page">/WEB-INF/adminJsp/product/admin_addProduct_page.jsp</result>
+			<result name="addProduct_do" type="redirectAction">adminproduct_findAllProduct.action?currentPage=1</result>
+			<result name="remove_do" type="redirectAction">adminproduct_findAllProduct.action?currentPage=1</result>
+			<result name="edit_page">/WEB-INF/adminJsp/product/admin_updateProduct_page.jsp</result>
+			<result name="updateProduct_do" type="redirectAction">adminproduct_findAllProduct.action?currentPage=1</result>
+			<interceptor-ref name="AdminInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
+		</action>
+		<!-- 后台订单管理模块action -->
+		<action name="adminorders_*" class="adminOrdersAction" method="{1}">
+			<result name="findAllOrders">/WEB-INF/adminJsp/orders/admin_allOrdersList.jsp</result>
+			<result name="viewOrderItem">/WEB-INF/adminJsp/orders/admin_viewOrderItem.jsp</result>
+			<result name="updateStatus" type="redirectAction">adminorders_findAllOrdersWithPage.action?currentPage=1</result>
+			<interceptor-ref name="AdminInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
 		</action>
 	</package>
 </struts>

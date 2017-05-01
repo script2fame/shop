@@ -51,4 +51,9 @@ public class AdminAction extends ActionSupport implements ModelDriven<Admin>{
 			return "loginFail";
 		}
 	}
+	
+	public String logout(){
+		ServletActionContext.getRequest().getSession().invalidate();
+		return "logout";
+	}
 }

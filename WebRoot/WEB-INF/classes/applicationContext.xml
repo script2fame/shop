@@ -103,6 +103,15 @@
 			<property name="categorySecondService" ref="categorySecondService"/>
 			<property name="categoryService" ref="categoryService"/>
 		</bean>
+		<!-- 后台商品管理的action -->
+		<bean id="adminProductAction" class="com.hungteshun.shop.admin.action.AdminProductAction" scope="prototype">
+			<property name="productService" ref="productService"/>
+			<property name="categorySecondService" ref="categorySecondService"/>
+		</bean>
+		<!-- 后台订单管理的action -->
+		<bean id="adminOrdersAction" class="com.hungteshun.shop.admin.action.AdminOrdersAction" scope="prototype">
+			<property name="orderService" ref="orderService"/>
+		</bean>
 	<!-- Service的配置 =========================== -->
 		<bean id="userService" class="com.hungteshun.shop.user.service.UserService">
 			<!-- 注入UserDao -->

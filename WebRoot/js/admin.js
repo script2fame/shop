@@ -47,9 +47,6 @@ function addCategory(title){
 	}
 }
 */
-function admin_switchToUsers(){
-	
-}
 function admin_switchToCategory(){
 	var center = $("#main").layout('panel','center');
 	var url = "${pageContext.request.contextPath}/admincategory_findAllCategory.action";
@@ -60,6 +57,24 @@ function admin_switchToCategorySecond(currentPage){
 	var url = "${pageContext.request.contextPath}/admincategorysecond_findAllcategorySecond.action?currentPage="+currentPage;
 	center.panel('refresh',url);
 }
+/**
+ * 跳转到后台商品管理页面
+ * @param currentPage
+ */
+function admin_switchToProduct(currentPage){
+	var center = $('#main').layout('panel','center');
+	var url = "${pageContext.request.contextPath}/adminproduct_findAllProduct.action?currentPage="+currentPage;
+	center.panel('refresh',url);
+}
+/**
+ * 跳转到订单页面
+ */
+function admin_switchToOrders(currentPage){
+	var center = $('#main').layout('panel','center');
+	var url = "${pageContext.request.contextPath}/adminorders_findAllOrdersWithPage.action?currentPage="+currentPage;
+	center.panel('refresh',url);
+}
+
 function admin_categoryAddPage(){
 	var center = $("#main").layout('panel','center');
 	var url = "${pageContext.request.contextPath}/admincategory_categoryAddPage.action";
@@ -305,6 +320,187 @@ function admincategorysecond_updateCategorySecond_do(){
 			if(data!=null){
 				var center = $("#main").layout('panel','center');
 				var url = "${pageContext.request.contextPath}/admincategorysecond_findAllcategorySecond.action?currentPage=1";
+				center.panel('refresh',url);
+			}
+		},
+		error:function(errordata){
+			console.log(errordata);
+		}
+	});
+}
+/**
+ * 跳转到添加商品页面
+ */
+function admin_productAddPage(){
+	$.ajax({
+		url:'${pageContext.request.contextPath}/adminproduct_addProduct_page.action',
+		type:'post',
+		data:{
+		},
+		success:function(data){
+			if(data!=null){
+				var center = $("#main").layout('panel','center');
+				var url = "${pageContext.request.contextPath}/adminproduct_addProduct_page.action";
+				center.panel('refresh',url);
+			}
+		},
+		error:function(errordata){
+			console.log(errordata);
+		}
+	});
+}
+
+/**
+ * 添加商品
+ */
+function adminproduct_save_do(){
+	$(document).ready(
+			function(){
+				var options = {
+						url:"${pageContext.request.contextPath}/adminproduct_addProduct_do.action",
+						type:"post",
+						dataType:"script",
+						success:function (data){
+							if(data!=null){
+								var center = $("#main").layout('panel','center');
+								var url = "${pageContext.request.contextPath}/adminproduct_findAllProduct.action?currentPage=1";
+								center.panel('refresh',url);
+							}
+						},
+						error:function(data){
+							console.log(data);
+						}
+				};//options结束
+				$('#admin_productAdd_form').ajaxSubmit(options);
+				return false;
+			});
+}
+/**
+ * 删除二级分类
+ */
+function adminproduct_remove_do(pid){
+	$.messager.confirm('删除','是否确认删除该条记录?',function(flag){
+		if(!flag){
+			$.messager.show({
+				width:300,
+				height:160,
+				title:'善意的提醒',
+				msg:'您取消了删除!',
+				timeout:3000
+			});
+			return false;
+		}
+	$.ajax({
+		url:'${pageContext.request.contextPath}/adminproduct_remove_do.action',
+		type:'post',
+		data:{
+			pid:pid
+		},
+		success:function(data){
+			if(data!=null){
+				$.messager.show({
+					width:300,
+					height:160,
+					title:'么么哒',
+					msg:'您的记录删除成功^_^!',
+					timeout:3000
+				});
+				var center = $("#main").layout('panel','center');
+				var url = "${pageContext.request.contextPath}/adminproduct_findAllProduct.action?currentPage=1";
+				center.panel('refresh',url);
+			}
+			
+		},
+		error:function(errordata){
+			console.log(errordata);
+		}
+	});
+	});
+}
+/**
+ * 跳转到修改的编辑页面
+ * @param pid
+ */
+function adminproduct_edit_page(pid){
+	$.ajax({
+		url:'${pageContext.request.contextPath}/adminproduct_edit_page.action',
+		type:'post',
+		data:{
+			pid:pid
+		},
+		success:function(data){
+				var center = $("#main").layout('panel','center');
+				var url = "${pageContext.request.contextPath}/adminproduct_edit_page.action?pid="+pid;
+				center.panel('refresh',url);
+		},
+		error:function(errordata){
+			console.log(errordata);
+		}
+	});
+}
+
+/**
+ * 修改商品信息
+ */
+function adminproduct_update_do(){
+	$(document).ready(
+			function(){
+				var options = {
+						url:"${pageContext.request.contextPath}/adminproduct_updateProduct_do.action",
+						type:"post",
+						dataType:"script",
+						success:function (data){
+							if(data!=null){
+								var center = $("#main").layout('panel','center');
+								var url = "${pageContext.request.contextPath}/adminproduct_findAllProduct.action?currentPage=1";
+								center.panel('refresh',url);
+							}
+						},
+						error:function(data){
+							console.log(data);
+						}
+				};//options结束
+				$('#admin_productUpdate_form').ajaxSubmit(options);
+				return false;
+			});
+}
+
+/**
+ * 异步加载订单项
+ */
+function adminOrders_viewOrderItem(oid){
+	var btn = $('#btn_adminOrders_viewOrderItem');
+	if(btn.val() == 'adminOrders_viewOrderItem'){
+		$.ajax({
+			url:'${pageContext.request.contextPath}/adminorders_viewOrderItem.action',
+			type:'post',
+			data:{
+				oid:oid
+			},
+			success:function(data){
+				$('#div_viewOrderItem_'+oid).html(data);
+			},
+			error:function(errordata){
+				console.log(errordata);
+			}
+		});
+		btn.val('close');
+	}else{
+		btn.val('adminOrders_viewOrderItem');
+		$('#div_viewOrderItem_'+oid).html('');
+	}
+}
+function adminorders_updateStatus(oid){
+	$.ajax({
+		url:'${pageContext.request.contextPath}/adminorders_updateStatus.action',
+		type:'post',
+		data:{
+			oid:oid
+		},
+		success:function(data){
+			if(data!=null){
+				var center = $("#main").layout('panel','center');
+				var url = "${pageContext.request.contextPath}/adminorders_findAllOrdersWithPage.action?currentPage=1";
 				center.panel('refresh',url);
 			}
 		},
