@@ -74,12 +74,31 @@ function admin_switchToOrders(currentPage){
 	var url = "${pageContext.request.contextPath}/adminorders_findAllOrdersWithPage.action?currentPage="+currentPage;
 	center.panel('refresh',url);
 }
-
+/**
+ * 跳转到商品分析统计页面
+ */
+function admin_switchToStatistics(){
+	$.ajax({			
+		url: "${pageContext.request.contextPath}/adminorders_statisticsPage.action?time="+new Date(),
+		type:'get',
+		cache : false,
+		data:{},
+		success: function(data){
+			var center = $('#main').layout('panel','center');
+			var url = "${pageContext.request.contextPath}/adminorders_statisticsPage.action?time="+new Date();
+			center.panel('refresh',url);
+			}
+		});
+}
+/**
+ *  跳转到商品统计页面
+ */
 function admin_categoryAddPage(){
 	var center = $("#main").layout('panel','center');
 	var url = "${pageContext.request.contextPath}/admincategory_categoryAddPage.action";
 	center.panel('refresh',url);
 }
+
 /**
  * 使用ajax异步提交数据添加一级分类
  */
@@ -508,4 +527,74 @@ function adminorders_updateStatus(oid){
 			console.log(errordata);
 		}
 	});
+}
+/**
+ * 销售统计柱状图
+ */
+function admin_statistics_bar(){
+	var myChart=echarts.init(document.getElementById('ProductStatistics_bar'));
+	var option={
+		title : {
+			text : '周销售前五商品柱状图',
+			x:'center'
+		},
+		tooltip : {},
+		legend : {
+			orient: 'vertical',
+	        left: 'left',
+			data : ['数量']
+		},
+		xAxis : {
+			data : ["12", "56", "63", "89", "15"]
+		},
+		yAxis : {},
+		series : [ {
+			name : '数量',
+			type : 'bar',
+			data : [1180, 1088, 1590, 1589, 1491]
+		} ]
+	};
+	myChart.setOption(option);  	
+}
+/**
+ * 销售统计饼状图
+ */
+function admin_statistics_pie(){
+	var myChart=echarts.init(document.getElementById('ProductStatistics_pie'));
+	option = {
+		    title : {
+		        text: '周销售前五商品饼状图',
+		        x:'center'
+		    },
+		    legend: {
+		        orient: 'vertical',
+		        left: 'left',
+		        data: ['12','56','63','89','15']
+		    },
+		    series : [
+		        {
+		            name: '周销售前五商品饼状图',
+		            type: 'pie',
+		            radius : '90%',
+		            center: ['50%', '55%'],
+		            data:[
+		                {value:1180, name:'12'},
+		                {value:1088, name:'56'},
+		                {value:1590, name:'63'},
+		                {value:1589, name:'89'},
+		                {value:1491, name:'15'}
+		            ],
+		            itemStyle: {
+		                emphasis: {
+		                    shadowBlur: 10,
+		                    shadowOffsetX: 0,
+		                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+		                }
+		            }
+		        }
+		    ]
+		};
+		if (option && typeof option == "object") {
+		    myChart.setOption(option, true);
+		} 	
 }

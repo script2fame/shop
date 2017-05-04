@@ -10,14 +10,14 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/admin.css">
 
 </head>
-<body id="main" class="easyui-layout">
+<body id="main" class="easyui-layout" >
 	<div data-options="region:'north',split:false" style="height:100px;background:#eee">
 		<div class="log">网上商城后台管理系统</div>
 		<s:if test="#session.existAdmin != null">
 			<div class='logout'>您好，<span id='username'><s:property value='#session.existAdmin.username'/></span>|<a href="${pageContext.request.contextPath}/admin_logout.action">退出系统</a></div>
 		</s:if>
 		<s:else>
-			<div class='logout'>您好，<span id='username'>您还没有登录</span></div>
+			<script language='javascript'>document.location = 'http://127.0.0.1:8080/shop/admin.jsp'</script>
 		</s:else>
 	</div>
 	
@@ -50,6 +50,12 @@
     					<li><span><div onclick="admin_switchToOrders(1)">订单管理</div></span></li>
     				</ul>
     				</li>
+    				<li>
+    				<span>统计分析</span>
+    				<ul>
+    					<li><span><div onclick="admin_switchToStatistics()">统计分析</div></span></li>
+    				</ul>
+    				</li>
     			</ul>
     		</li>
     	</ul>
@@ -68,6 +74,7 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.params.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/locale/easyui-lang-zh_CN.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery.form.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/echarts.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/admin.js"></script>
 </html>

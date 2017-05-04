@@ -58,4 +58,8 @@ public class AdminOrdersAction extends ActionSupport implements ModelDriven<Orde
 		orderService.update(existOrders);
 		return "updateStatus";
 	}
+	
+	public String statisticsPage(){
+		return "statisticsPage";
+	}
 }

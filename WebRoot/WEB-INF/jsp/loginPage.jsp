@@ -57,16 +57,6 @@
 									<input type="password" id="password" name="password" class="text" maxlength="20" autocomplete="off">
 								</td>
 							</tr>
-								<tr>
-									<th>
-										验证码:
-									</th>
-									<td>
-										<span class="fieldSet">
-											<input type="text" id="securitycode" name="securitycode" class="text captcha" maxlength="4" autocomplete="off"><img id="securitycode" class="securitycode" src="${pageContext.request.contextPath}/image/securitycode.action" onclick="changeSecurityCode()" title="点击更换验证码">
-										</span>
-									</td>
-								</tr>
 							<tr>
 								<th>&nbsp;
 									

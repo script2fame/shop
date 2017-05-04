@@ -100,6 +100,7 @@
 			<result name="findAllOrders">/WEB-INF/adminJsp/orders/admin_allOrdersList.jsp</result>
 			<result name="viewOrderItem">/WEB-INF/adminJsp/orders/admin_viewOrderItem.jsp</result>
 			<result name="updateStatus" type="redirectAction">adminorders_findAllOrdersWithPage.action?currentPage=1</result>
+			<result name="statisticsPage">/WEB-INF/adminJsp/statistics/statistics.jsp</result>
 			<interceptor-ref name="AdminInterceptor"/>
 			<interceptor-ref name="defaultStack"/>
 		</action>
