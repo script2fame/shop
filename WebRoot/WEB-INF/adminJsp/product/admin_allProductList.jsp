@@ -10,6 +10,12 @@
 			</tr>
 			<tr>
 				<td class="ta_01" align="right">
+					<div class="span9">
+						<div class="headerAd">
+							<input id="admin_inp_search_product" class="form-control" type="text" placeholder="商品搜索"/>
+							<button type="button" id="admin_btn_search_product" class="btn btn-primary" onclick="admin_search_product(1)">search</button>
+						</div>
+					</div>
 					<button type="button" class="easyui-linkbutton"
 						data-options="iconCls:'icon-reload',plain:true"
 						onclick="admin_switchToProduct(1)">刷新</button>
@@ -52,7 +58,23 @@
 									</td>
 								</tr>
 						</s:iterator>
-						<tr style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; HEIGHT: 25px; BACKGROUND-COLOR: #afd1f3">
+						<s:if test="productType != null">
+							<tr style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; HEIGHT: 25px; BACKGROUND-COLOR: #afd1f3">
+							<td colspan="7" align="center" width="18%">
+								第<s:property value="product_pageBean.currentPage"/>/<s:property value="product_pageBean.totalPage"/>页
+								<s:if test="product_pageBean.currentPage != 1">
+									<button type="button" class="easyui-linkbutton" data-options="plain:true" onclick="admin_search_product_productType(1,'<s:property value='productType'/>')">首页</button>
+									<button type="button" class="easyui-linkbutton" data-options="plain:true" onclick="admin_search_product_productType(<s:property value='product_pageBean.currentPage'/> -1,'<s:property value='productType'/>')">上一页</button>
+								</s:if>
+								<s:if test="product_pageBean.currentPage != product_pageBean.totalPage">
+									<button type="button" class="easyui-linkbutton" data-options="plain:true" onclick="admin_search_product_productType(<s:property value='product_pageBean.currentPage'/> +1,'<s:property value='productType'/>')">下一页</button>
+									<button type="button" class="easyui-linkbutton" data-options="plain:true" onclick="admin_search_product_productType(<s:property value='product_pageBean.totalPage'/>,'<s:property value='productType'/>')">尾页</button>									
+								</s:if>
+							</td>
+						</tr>	
+						</s:if>
+						<s:else>
+							<tr style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; HEIGHT: 25px; BACKGROUND-COLOR: #afd1f3">
 							<td colspan="7" align="center" width="18%">
 								第<s:property value="product_pageBean.currentPage"/>/<s:property value="product_pageBean.totalPage"/>页
 								<s:if test="product_pageBean.currentPage != 1">
@@ -64,7 +86,8 @@
 									<button type="button" class="easyui-linkbutton" data-options="plain:true" onclick="admin_switchToProduct(<s:property value='product_pageBean.totalPage'/> )">尾页</button>									
 								</s:if>
 							</td>
-						</tr>		
+						</tr>
+						</s:else>
 					</table>
 				</td>
 			</tr>

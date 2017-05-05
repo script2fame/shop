@@ -14,6 +14,7 @@ import com.hungteshun.shop.orders.vo.OrderItem;
 import com.hungteshun.shop.orders.vo.Orders;
 import com.hungteshun.shop.user.vo.User;
 import com.hungteshun.shop.utils.FormatDate;
+import com.hungteshun.shop.utils.IPAddress;
 import com.hungteshun.shop.utils.PayForOrders;
 import com.hungteshun.shop.utils.pageBean;
 import com.opensymphony.xwork2.ActionContext;
@@ -142,7 +143,8 @@ public class OrderAction extends ActionSupport implements ModelDriven<Orders> {
 		// 商品描述
 		String p7_Pdesc = "";
 		// 商户接收支付成功数据的地址
-		String p8_Url = "http://172.20.10.13:8080/shop/order_getBackMessage.action";
+		String ipAddress =IPAddress.getAddress();
+		String p8_Url = "http://"+ipAddress+":8080/shop/order_getBackMessage.action";
 		// 送货地址
 		String p9_SAF = "";
 		// 商户扩展信息
@@ -181,8 +183,8 @@ public class OrderAction extends ActionSupport implements ModelDriven<Orders> {
 	public String getBackMessage() {
 		//根据易宝返回的订单号查询该订单
 		Orders currentOrder = orderService.findOrderByOid(Integer.parseInt(r6_Order));
-		//将该订单状态修改为2，即已付款
-		currentOrder.setState(2);
+		//将该订单状态修改为1，即已付款
+		currentOrder.setState(1);
 		orderService.update(currentOrder);
 		this.addActionMessage("支付成功!订单编号: "+r6_Order +" 实付款: "+r3_Amt+"元");
 		return "message";

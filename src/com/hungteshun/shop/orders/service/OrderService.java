@@ -38,7 +38,7 @@ public class OrderService {
 		orders.setTotalMoney(existcart.getTotalMoney());
 		Date date = FormatDate.formatDate(new Date());
 		orders.setOrdertime(date);
-		orders.setState(1);
+		orders.setState(0);
 		orders.setUser(existUser);
 		for(CartItem cartItem : existcart.getCartItems()){
 			OrderItem orderItem = new OrderItem();
@@ -117,7 +117,7 @@ public class OrderService {
 		//设置当前页
 		orderPageBean.setCurrentPage(currentPage);
 		//每一页显示的记录数
-		Integer limit = 4;
+		Integer limit = 10;
 		orderPageBean.setLimit(limit);
 		//设置总的记录数
 		Integer totalCount = 0;

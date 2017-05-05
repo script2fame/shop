@@ -163,4 +163,34 @@ public class ProductDao extends HibernateDaoSupport{
 	public void update(Product product) {
 		this.getHibernateTemplate().update(product);
 	}
+
+	/**
+	 * 按查询要求查询商品个数
+	 * @param productType
+	 * @return
+	 */
+	public int findCountBySearch(String productType) {
+		String hql = "select count(*) from Product p where p.pname like ?";
+		List<Long> numList = this.getHibernateTemplate().find(hql,"%"+productType+"%");
+		if (numList != null && numList.size() > 0) {
+			return numList.get(0).intValue();
+		}
+		return 0;
+	}
+
+	/**
+	 * 按查询要求查询所有的商品集合
+	 * @param begin
+	 * @param limit
+	 * @param productType
+	 * @return
+	 */
+	public List<Product> findBySearch(int begin, int limit, String productType) {
+		String hql = "from Product p where p.pname like ? order by p.pdate desc";
+		List<Product> productList = this.getHibernateTemplate().execute(new PageHibernateCallback<Product>(hql, new Object[]{"%"+productType+"%"}, begin, limit));
+		if (productList != null && productList.size() > 0) {
+			return productList;
+		}
+		return null;
+	}
 }

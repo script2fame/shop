@@ -61,7 +61,6 @@ public class AdminCategorySecondAction extends ActionSupport implements ModelDri
 		pageBean<CategorySecond> pageBeanCategorySecond = categorySecondService.findCategorySecondWithPage(currentPage);
 		//将pageBeanCategorySecond保存到值栈中
 		ActionContext.getContext().getValueStack().set("pageBeanCategorySecond", pageBeanCategorySecond);;
-		System.out.println(pageBeanCategorySecond.getList().size());
 		return "findAllcategorySecond";
 	}
 	

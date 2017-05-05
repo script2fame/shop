@@ -204,5 +204,33 @@ public class ProductService {
 		}
 		productDao.update(product);
 	}
+
+	//按要求分页查询
+	public pageBean<Product> findProduceBySearch(int currentPage, String productType) {
+		pageBean<Product> pageBean = new pageBean<Product>();
+		//设置当前页:
+		pageBean.setCurrentPage(currentPage);
+		//设置每页的记录数
+		int limit = 12;
+		pageBean.setLimit(limit);
+		//设置总的记录数
+		int totalCount = 0;
+		totalCount = productDao.findCountBySearch(productType);
+		pageBean.setTotalCount(totalCount);
+		//设置总页数
+		int totalPage = 0;
+		//totalPage = (int) Math.ceil(totalCount/limit);
+		if(totalCount%limit==0){
+			totalPage = totalCount/limit;
+		}else{
+			totalPage = totalCount/limit + 1;
+		}
+		pageBean.setTotalPage(totalPage);
+		//显示的数据的集合
+		int begin =(currentPage - 1)*limit;
+		List<Product> pList = productDao.findBySearch(begin,limit,productType);
+		pageBean.setList(pList);
+ 		return pageBean;
+	}
 	
 }

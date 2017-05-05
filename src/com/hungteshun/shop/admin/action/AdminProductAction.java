@@ -1,5 +1,6 @@
 package com.hungteshun.shop.admin.action;
 
+import java.io.Console;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -38,6 +39,7 @@ public class AdminProductAction extends ActionSupport implements
 	private File upload;//上传的文件
 	private String uploadFileName;//上传的文件名
 	private String uploadContextType;//上传的文件的MIME的类型
+	private String productType;
 	
 	public Product getModel() {
 		return product;
@@ -65,6 +67,14 @@ public class AdminProductAction extends ActionSupport implements
 
 	public void setUploadContextType(String uploadContextType) {
 		this.uploadContextType = uploadContextType;
+	}
+
+	public void setProductType(String productType) {
+		this.productType = productType;
+	}
+
+	public String getProductType() {
+		return productType;
 	}
 
 	public String findAllProduct() {
@@ -121,5 +131,17 @@ public class AdminProductAction extends ActionSupport implements
 	public String updateProduct_do() throws ParseException, IOException{
 		productService.update(product,upload,uploadFileName);
 		return "updateProduct_do";
+	}
+	
+	public String findBySearch(){
+		System.err.println("productType="+productType);
+		if(productType != null){
+			pageBean<Product> product_pageBean = productService.findProduceBySearch(currentPage, productType);
+			ActionContext.getContext().getValueStack().set("product_pageBean", product_pageBean);
+		}else{
+			pageBean<Product> product_pageBean = productService.findAllProductWithPage(currentPage);
+			ActionContext.getContext().getValueStack().set("product_pageBean", product_pageBean);
+		}
+		return "findAllProduct";
 	}
 }

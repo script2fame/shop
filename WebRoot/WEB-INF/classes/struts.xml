@@ -40,6 +40,7 @@
 			<result name="productDetails">/WEB-INF/jsp/productDetails.jsp</result>
 			<result name="findCategoryByCid">/WEB-INF/jsp/Allproducts.jsp</result>
 			<result name="findCategoryByCsid">/WEB-INF/jsp/Allproducts.jsp</result>
+			<result name="findBySearch">/WEB-INF/jsp/Allproducts.jsp</result>
 		</action>
 		<!-- 购物车模块的action -->
 		<action name="cart_*" class="cartAction" method="{1}">

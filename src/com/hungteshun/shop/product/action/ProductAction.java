@@ -18,6 +18,9 @@ public class ProductAction extends ActionSupport implements ModelDriven<Product>
 	private Integer csid;
 	//属性驱动接收当前页
 	private int currentPage;
+	//属性驱动接收查询类型
+	private String productType;
+	
 	//注入categoryService
 	private CategoryService categoryService;
 	//注入ProductService
@@ -49,7 +52,13 @@ public class ProductAction extends ActionSupport implements ModelDriven<Product>
 	public void setCurrentPage(int currentPage) {
 		this.currentPage = currentPage;
 	}
-	
+	//将csid存入action中(值栈)中，使得在jsp中可以取出来
+	public String getProductType() {
+		return productType;
+	}
+	public void setProductType(String productType) {
+		this.productType = productType;
+	}
 	public String findByPid(){
 		//不用存入值栈，存入model即可，即为栈顶
 		product = productService.findByPid(product.getPid());
@@ -79,5 +88,19 @@ public class ProductAction extends ActionSupport implements ModelDriven<Product>
 		//将查询到的商品存入值栈
 		ActionContext.getContext().getValueStack().set("pageBeanProduct", pageBeanProduct);
 		return "findCategoryByCsid";
+	}
+	
+	public String findBySearch(){
+		if(productType != null){
+			System.out.println("productType"+productType);
+			pageBean<Product> pageBeanProduct = productService.findProduceBySearch(currentPage,productType);
+			//将查询到的商品存入值栈
+			ActionContext.getContext().getValueStack().set("pageBeanProduct", pageBeanProduct);	
+		}else{
+			pageBean<Product> pageBeanProduct = productService.findAllProductWithPage(currentPage);
+			//将查询到的商品存入值栈
+			ActionContext.getContext().getValueStack().set("pageBeanProduct", pageBeanProduct);	
+		}
+		return "findBySearch";
 	}
 }

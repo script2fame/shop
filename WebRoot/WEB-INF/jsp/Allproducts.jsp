@@ -22,7 +22,7 @@
 	</div>
 	<div class="span9">
 <div class="headerAd">
-					<img src="${pageContext.request.contextPath}/image/header.jpg" width="320" height="50" alt="正品保障" title="正品保障">
+	<img src="${pageContext.request.contextPath}/image/header.jpg" width="320" height="50" alt="正品保障" title="正品保障">
 </div>	</div>
 	<%@ include file="menu.jsp" %>
 </div>	
@@ -44,7 +44,6 @@
 			</div>
 		</div>
 		<div class="span18 last">
-			
 			<form id="productForm" action="${pageContext.request.contextPath}/image/蔬菜 - Powered By Mango Team.htm" method="get">
 				<div id="result" class="result table clearfix">
 						<ul>
@@ -82,7 +81,7 @@
 			</s:if>
 		</s:if>
 		<!-- 根据二级分类查询得到的商品 -->
-		<s:else>
+		<s:elseif test="csid != null">
 			<span>第<s:property value="pageBeanProduct.currentPage"/>/<s:property value="pageBeanProduct.totalPage"/>页</span>
 			<s:if test="pageBeanProduct.currentPage!=1">
 			<a href="${pageContext.request.contextPath}/product_findByCsid.action?csid=<s:property value="csid"/>&currentPage=1" class="firstPage">&nbsp;</a>
@@ -100,6 +99,47 @@
 			<s:if test="pageBeanProduct.currentPage!=pageBeanProduct.totalPage">
 			<a class="nextPage" href="${pageContext.request.contextPath}/product_findByCsid.action?csid=<s:property value="csid"/>&currentPage=<s:property value='pageBeanProduct.currentPage+1'/>">&nbsp;</a>
 			<a class="lastPage" href="${pageContext.request.contextPath}/product_findByCsid.action?csid=<s:property value="csid"/>&currentPage=<s:property value='pageBeanProduct.totalPage'/>">&nbsp;</a>
+			</s:if>
+		</s:elseif>
+		<!-- 条件或者非条件查询 -->
+		<s:elseif test="productType != null">
+			<span>第<s:property value="pageBeanProduct.currentPage"/>/<s:property value="pageBeanProduct.totalPage"/>页</span>
+			<s:if test="pageBeanProduct.currentPage!=1">
+			<a href="${pageContext.request.contextPath}/product_findBySearch.action?currentPage=1&productType=<s:property value='productType'/>" class="firstPage">&nbsp;</a>
+			<a href="${pageContext.request.contextPath}/product_findBySearch.action?currentPage=<s:property value='pageBeanProduct.currentPage-1'/>&productType=<s:property value='productType'/>" class="previousPage">&nbsp;</a>
+			</s:if>
+			<s:iterator var="i" begin="1" end="pageBeanProduct.totalPage">
+				<s:if test="pageBeanProduct.currentPage!=#i">
+					<a href="${pageContext.request.contextPath}/product_findBySearch.action?currentPage=<s:property value='#i'/>&productType=<s:property value='productType'/>"><s:property value='#i'/></a>
+				</s:if>
+				<s:else>
+					<span class="currentPage"><s:property value='#i'/></span>
+				</s:else>
+			</s:iterator>
+				
+			<s:if test="pageBeanProduct.currentPage!=pageBeanProduct.totalPage">
+			<a class="nextPage" href="${pageContext.request.contextPath}/product_findBySearch.action?currentPage=<s:property value='pageBeanProduct.currentPage+1'/>&productType=<s:property value='productType'/>">&nbsp;</a>
+			<a class="lastPage" href="${pageContext.request.contextPath}/product_findBySearch.action?currentPage=<s:property value='pageBeanProduct.totalPage'/>&productType=<s:property value='productType'/>">&nbsp;</a>
+			</s:if>
+		</s:elseif>
+		<s:else >
+			<span>第<s:property value="pageBeanProduct.currentPage"/>/<s:property value="pageBeanProduct.totalPage"/>页</span>
+			<s:if test="pageBeanProduct.currentPage!=1">
+			<a href="${pageContext.request.contextPath}/product_findBySearch.action?currentPage=1" class="firstPage">&nbsp;</a>
+			<a href="${pageContext.request.contextPath}/product_findBySearch.action?currentPage=<s:property value='pageBeanProduct.currentPage-1'/>" class="previousPage">&nbsp;</a>
+			</s:if>
+			<s:iterator var="i" begin="1" end="pageBeanProduct.totalPage">
+				<s:if test="pageBeanProduct.currentPage!=#i">
+					<a href="${pageContext.request.contextPath}/product_findBySearch.action?currentPage=<s:property value='#i'/>"><s:property value='#i'/></a>
+				</s:if>
+				<s:else>
+					<span class="currentPage"><s:property value='#i'/></span>
+				</s:else>
+			</s:iterator>
+				
+			<s:if test="pageBeanProduct.currentPage!=pageBeanProduct.totalPage">
+			<a class="nextPage" href="${pageContext.request.contextPath}/product_findBySearch.action?currentPage=<s:property value='pageBeanProduct.currentPage+1'/>">&nbsp;</a>
+			<a class="lastPage" href="${pageContext.request.contextPath}/product_findBySearch.action?currentPage=<s:property value='pageBeanProduct.totalPage'/>">&nbsp;</a>
 			</s:if>
 		</s:else>
 	</div>
