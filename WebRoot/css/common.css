@@ -136,7 +136,6 @@ textarea {
 div.container {
 	width: 950px;
 	margin: 0px auto;
-	*zoom: 1;
 }
 
 div.container:after {

@@ -8,6 +8,7 @@
 <link href="${pageContext.request.contextPath}/css/slider.css" rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/css/index.css" rel="stylesheet" type="text/css" />
+ <link href="${pageContext.request.contextPath}/css/MainFram.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 	<div class="container header">
@@ -28,6 +29,26 @@
 	<%@ include file="menu.jsp" %>
 	</div>
 	<div class="container index">
+		<div class="span24">
+		<!-- 轮播图 -->
+		<div class="flash">
+    	<!-- 图片展示 -->
+        <ul class="con">
+        	<li style="background-image:url(images/img1.jpg)"></li>
+            <li style="background-image:url(images/img2.jpg)"></li>
+            <li style="background-image:url(images/img3.jpg)"></li>
+            <li style="background-image:url(images/img4.jpg)"></li>
+        </ul>
+        <!-- 图片按钮 -->
+        <ul class='but'>
+			<li class="current"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+    </div>
+		</div>
+		
 		<div class="span24">
 			<div id="hotProduct" class="hotProduct clearfix">
 				<div class="title">
@@ -121,4 +142,5 @@
 </body>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/index.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/LunBoTu.js"></script>
 </html>

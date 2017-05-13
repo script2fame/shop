@@ -143,8 +143,9 @@ public class OrderAction extends ActionSupport implements ModelDriven<Orders> {
 		// 商品描述
 		String p7_Pdesc = "";
 		// 商户接收支付成功数据的地址
-		String ipAddress =IPAddress.getAddress();
-		String p8_Url = "http://"+ipAddress+":8080/shop/order_getBackMessage.action";
+		//String ipAddress =IPAddress.getAddress();
+		
+		String p8_Url = "http://172.20.10.13:8080/shop/order_getBackMessage.action";
 		// 送货地址
 		String p9_SAF = "";
 		// 商户扩展信息
