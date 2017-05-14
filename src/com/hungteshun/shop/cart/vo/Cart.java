@@ -7,7 +7,7 @@ import java.util.Map;
 
 /**
  * 购物车对象
- * @author hungteshun黄调聪
+ * @author DoutzenShum
  *
  */
 public class Cart implements Serializable{
