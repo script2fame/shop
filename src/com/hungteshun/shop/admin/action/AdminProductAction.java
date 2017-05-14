@@ -69,6 +69,11 @@ public class AdminProductAction extends ActionSupport implements
 		this.uploadContextType = uploadContextType;
 	}
 
+	/**
+	 * 生产setter方法，在前台取出来判断是否有传入查询条件
+	 * @param productType
+	 */
+	
 	public void setProductType(String productType) {
 		this.productType = productType;
 	}
@@ -132,9 +137,11 @@ public class AdminProductAction extends ActionSupport implements
 		productService.update(product,upload,uploadFileName);
 		return "updateProduct_do";
 	}
-	
+	/**
+	 * 条件查询
+	 * @return
+	 */
 	public String findBySearch(){
-		System.err.println("productType="+productType);
 		if(productType != null){
 			pageBean<Product> product_pageBean = productService.findProduceBySearch(currentPage, productType);
 			ActionContext.getContext().getValueStack().set("product_pageBean", product_pageBean);
