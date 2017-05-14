@@ -8,7 +8,7 @@ import com.hungteshun.shop.product.vo.Product;
 
 /**
  * 二级分类实体类
- * @author hungteshun黄调聪
+ * @author 小东东
  *
  */
 public class CategorySecond{

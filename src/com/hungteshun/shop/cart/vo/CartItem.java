@@ -4,7 +4,7 @@ import com.hungteshun.shop.product.vo.Product;
 
 /**
  * 购物项的对象
- * @author hungteshun黄调聪
+ * @author DoutzenShum
  *
  */
 
