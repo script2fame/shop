@@ -7,6 +7,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import com.hungteshun.shop.orders.vo.OrderItem;
 import com.hungteshun.shop.orders.vo.Orders;
 import com.hungteshun.shop.utils.PageHibernateCallback;
+import com.hungteshun.shop.utils.pageBean;
 
 public class OrderDao extends HibernateDaoSupport{
 
@@ -109,4 +110,5 @@ public class OrderDao extends HibernateDaoSupport{
 		}
 		return null;
 	}
+
 }

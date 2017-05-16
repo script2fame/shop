@@ -598,7 +598,9 @@ function admin_statistics_pie(){
 		    myChart.setOption(option, true);
 		} 	
 }
-
+/*
+ * 条件查询商品
+ */
 function admin_search_product(currentPage){
 	var productType = $("#admin_inp_search_product").val();
 	$.ajax({
@@ -621,6 +623,34 @@ function admin_search_product(currentPage){
 	});
 }
 
+/**
+ * 条件查询订单
+ */
+function admin_search_orders(){
+	var orders_search_news = $("#admin_inp_search_orders").val();
+	$.ajax({
+		url:'${pageContext.request.contextPath}/adminorders_findOrdersBySearch.action?currentPage=1',
+		type:'post',
+		data:{
+			orders_search_news:orders_search_news
+		},
+		success:function(data){
+			if(data!=null){
+				var center = $("#main").layout('panel','center');
+				var url = "${pageContext.request.contextPath}/adminorders_findOrdersBySearch.action?currentPage=1&orders_search_news="+orders_search_news;
+				center.panel('refresh',url);
+			}
+		},
+		error:function(errordata){
+			console.log(errordata);
+		}
+	});
+}
+/**
+ * 条件查询商品下一页或者上一页
+ * @param currentPage
+ * @param productType
+ */
 function admin_search_product_productType(currentPage,productType){
 	$.ajax({
 		url:'${pageContext.request.contextPath}/adminproduct_findBySearch.action',

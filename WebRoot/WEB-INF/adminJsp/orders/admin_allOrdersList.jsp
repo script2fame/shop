@@ -10,9 +10,17 @@
 			</tr>
 			<tr>
 				<td class="ta_01" align="right">
-					<button type="button" class="easyui-linkbutton"
+				<div class="span9">
+						<div class="headerAd">
+							<input id="admin_inp_search_orders" class="form-control" type="text" placeholder="商品搜索"/>
+							<button type="button" id="admin_btn_search_orders" class="btn btn-primary" onclick="admin_search_orders()">search</button>
+						</div>
+						<div>
+						<button type="button" class="easyui-linkbutton"
 						data-options="iconCls:'icon-reload',plain:true"
 						onclick="admin_switchToOrders(1)">刷新</button>
+						</div>
+					</div>
 				</td>
 			</tr>
 			<tr>
