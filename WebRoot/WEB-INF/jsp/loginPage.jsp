@@ -42,7 +42,7 @@
 						<table>
 							<tbody><tr>
 								<th>
-										用户名/E-mail:
+										用户名:
 								</th>
 								<td>
 									<input type="text" id="username" name="username" class="text" maxlength="20">

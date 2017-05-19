@@ -21,9 +21,11 @@
 		</div>
 	</div>
 	<div class="span9">
-<div class="headerAd">
-	<img src="${pageContext.request.contextPath}/image/header.jpg" width="320" height="50" alt="正品保障" title="正品保障">
-</div>	</div>
+			<div class="headerAd">
+				<input id="inp_search_product" class="form-control" type="text" placeholder="商品搜索"/>
+				<button id="btn_search_product" class="btn btn-primary" onclick="search_product(1)">search</button>
+			</div>
+	</div>
 	<%@ include file="menu.jsp" %>
 </div>	
 <div class="container productList">
@@ -195,4 +197,7 @@
 		<div class="copyright">Copyright©2005-2015 网上商城 版权所有</div>
 	</div>
 </div>
-</body></html>
+</body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/index.js"></script>
+</html>
